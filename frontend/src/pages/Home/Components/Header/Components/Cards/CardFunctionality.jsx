@@ -2,12 +2,11 @@
 import { Box, Paper } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Icon from "../../../../../../components/Icon";
-import PropTypes from "prop-types";
 import React from "react";
 import styled from "@emotion/styled";
 import styles from "../../../../index.module.scss";
 
-export function CardFuncionalidade({ description, icon, title, redirectPage }) {
+export function CardFunctionality({ description, icon, title, redirectPage }) {
   const Card = styled(Paper)(({ theme }) => ({
     borderRadius: "16px",
     boxShadow: "0 3px 20px 0 #0000001F",
@@ -42,14 +41,3 @@ export function CardFuncionalidade({ description, icon, title, redirectPage }) {
     </Card>
   );
 }
-
-CardFuncionalidade.propTypes = {
-  description: PropTypes.string,
-  redirectPage: PropTypes.func.isRequired,
-  srcImage: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-CardFuncionalidade.defaultProps = {
-  description: "",
-};

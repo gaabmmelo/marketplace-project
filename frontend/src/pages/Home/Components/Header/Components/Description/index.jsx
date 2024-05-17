@@ -18,11 +18,6 @@ export function Description() {
 
         <Box className={styles.subTitle}>O que você quer fazer hoje?</Box>
       </Box>
-
-      <Box sx={{ color: "#000" }}>
-        Arcu est bibendum curabitur nulla. Magnis tincidunt quam felis orci
-        felis molestie fusce.
-      </Box>
     </Grid>
   );
 }

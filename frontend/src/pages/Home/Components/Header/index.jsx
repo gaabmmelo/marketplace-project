@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import { CardsAgrupados } from "./Components/CardFuncionalidade/CardsAgrupados";
+import { GroupedCards } from "./Components/Cards/GroupedCards";
 import { Description } from "./Components/Description";
 import React from "react";
 import styles from "../../index.module.scss";
@@ -18,7 +18,7 @@ export function Header() {
       <Grid container padding="25px 40px 40px 40px">
         <Description />
 
-        <CardsAgrupados />
+        <GroupedCards />
       </Grid>
     </Box>
   );
