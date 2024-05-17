@@ -1,5 +1,4 @@
 import { IconButton, Tooltip } from "@mui/material";
-import PropTypes from "prop-types";
 import React from "react";
 
 export default function Icon({ icon, tooltip, callback, ...other }) {
