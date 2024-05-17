@@ -1,0 +1,5 @@
+# Dependencias
+
+```
+php-mysqli
+```

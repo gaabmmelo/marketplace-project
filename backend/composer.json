@@ -1,0 +1,17 @@
+{
+    "name": "gaabmmelo/vendas",
+    "description": "Gerenciador de vendas",
+    "authors": [
+        {
+            "name": "Gabriela Melo",
+            "email": "gaabmmelo@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"App\\": "src/"}
+    },
+    "require": {
+        "php": ">=8.3",
+        "bramus/router": "~1.6"
+    }
+}
