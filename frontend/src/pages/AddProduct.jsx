@@ -13,7 +13,6 @@ export function AddProduct() {
   const [productTypeId, setProductTypeId] = useState("");
 
   const handleAdd = () => {
-    console.log("aqui");
     axios
       .post(
         "http://localhost:8080/product",
