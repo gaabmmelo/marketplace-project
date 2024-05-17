@@ -9,14 +9,3 @@ export default function Icon({ icon, tooltip, callback, ...other }) {
     </IconButton>
   );
 }
-
-Icon.propTypes = {
-  callback: PropTypes.func,
-  icon: PropTypes.element.isRequired,
-  tooltip: PropTypes.string,
-};
-
-Icon.defaultProps = {
-  callback: () => "",
-  tooltip: "",
-};

@@ -14,11 +14,12 @@ class Product {
         return $conn->fetchAll($query);
     }
 
-    public function create($id, $name, $type_id) {
+    public function create($name, $type_id) {
         $conn = new Database();
         $conn->connect();
 
-        $query = 'INSERT INTO public.products(id, product_name, product_type_id) VALUES (". $id .",". $name .", ". $type_id .")';
+        $query = "INSERT INTO public.products (product_name, product_type_id) VALUES ('$name', $type_id)";
+        error_log("Insert query: " . $query);
 
         return $conn->insert($query);
     }
