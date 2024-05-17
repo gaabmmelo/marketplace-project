@@ -10,7 +10,7 @@ export default function CardStyled({
   title,
   redirectPage,
 }) {
-  const Card = styled(Paper)(({ theme }) => ({
+  const Card = styled(Paper)(() => ({
     borderRadius: "16px",
     boxShadow: "0 3px 20px 0 #0000001F",
     padding: "16px 16px 8px 16px",
@@ -29,17 +29,11 @@ export default function CardStyled({
 
           <Box>
             <Icon
-              icon={
-                <AddCircleIcon
-                  color="secondary"
-                  sx={{ height: "50px", width: "50px" }}
-                />
-              }
+              icon={<AddCircleIcon sx={{ height: "50px", width: "50px" }} />}
               tooltip="Solicitar"
             />
           </Box>
         </Box>
-
         <Box>{description}</Box>
       </Box>
     </Card>

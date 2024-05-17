@@ -15,11 +15,7 @@ export function Header() {
     >
       <Box className={styles.backgroundContainerHeader} />
 
-      <Grid
-        className="animationFadeInMedium"
-        container
-        padding="25px 40px 40px 40px"
-      >
+      <Grid container padding="25px 40px 40px 40px">
         <Description />
 
         <CardsAgrupados />

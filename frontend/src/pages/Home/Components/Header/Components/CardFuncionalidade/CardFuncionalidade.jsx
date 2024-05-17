@@ -27,7 +27,7 @@ export function CardFuncionalidade({ description, icon, title, redirectPage }) {
             <Icon
               icon={
                 <AddCircleIcon
-                  color="secondary"
+                  color="#000"
                   sx={{ height: "50px", width: "50px" }}
                 />
               }
