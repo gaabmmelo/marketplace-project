@@ -5,8 +5,6 @@ import MenuAppBar from "../components/MenuAppBar/MenuAppBar";
 import { InputRender } from "../components/Input/InputRender";
 import AddIcon from "@mui/icons-material/Add";
 import { ButtonStyled } from "../components/Button/Button";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 
 export function AddProduct() {
   const [productName, setProductName] = useState("");
