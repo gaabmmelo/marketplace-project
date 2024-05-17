@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import axios from "axios";
 import { Box, Grid, IconButton, Typography } from "@mui/material";
 import MenuAppBar from "../components/MenuAppBar/MenuAppBar";
@@ -8,26 +9,29 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 
 export function AddProduct() {
-  const StyledPaper = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    borderRadius: "20px",
-    padding: theme.spacing(2),
-    marginTop: "10px",
-    maxWidth: "100%",
-    color: theme.palette.text.primary,
-  }));
+  const [productName, setProductName] = useState("");
+  const [productTypeId, setProductTypeId] = useState("");
 
   const handleAdd = () => {
     console.log("aqui");
     axios
-      .post("http://localhost:8080/product", {
-        id: 3,
-        name: "teste",
-        type_id: 1,
-      })
+      .post(
+        "http://localhost:8080/product",
+        {
+          name: productName,
+          type_id: productTypeId,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((response) => {
         console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
       });
   };
 
@@ -57,10 +61,18 @@ export function AddProduct() {
               Cadastro de produtos
             </Typography>
 
-            <InputRender placeholder="Nome do produto" />
+            <InputRender
+              placeholder="Nome do produto"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+            />
 
-            <div styles="display:flex">
-              <InputRender placeholder="Tipo" />
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <InputRender
+                placeholder="Tipo"
+                value={productTypeId}
+                onChange={(e) => setProductTypeId(e.target.value)}
+              />
 
               <IconButton aria-label="Adicionar tipo de produto">
                 <AddIcon />
