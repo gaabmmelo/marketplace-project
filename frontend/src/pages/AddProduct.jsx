@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Box, Grid, IconButton, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  IconButton,
+  MenuItem,
+  Paper,
+  Typography,
+} from "@mui/material";
 import MenuAppBar from "../components/MenuAppBar/MenuAppBar";
 import { InputRender } from "../components/Input/InputRender";
 import AddIcon from "@mui/icons-material/Add";
 import { ButtonStyled } from "../components/Button/Button";
+import InputSelect from "components/Input/InputSelect";
 
 export function AddProduct() {
   const [productName, setProductName] = useState("");
   const [productTypeId, setProductTypeId] = useState("");
+  const [productTypes, setProductTypes] = useState([]);
 
   const handleAdd = () => {
     axios
@@ -31,6 +40,17 @@ export function AddProduct() {
         console.error("Error:", error);
       });
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/product_type")
+      .then((response) => {
+        setProductTypes(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
   return (
     <>
@@ -56,11 +76,18 @@ export function AddProduct() {
                 />
 
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <InputRender
-                    placeholder="Tipo"
-                    value={productTypeId}
+                  <InputSelect
                     onChange={(e) => setProductTypeId(e.target.value)}
-                  />
+                    value={productTypeId}
+                  >
+                    {productTypes.map((option) => (
+                      <MenuItem key={option.id} value={option.value}>
+                        Identificador: #00{option.id} | Tipo do produto:{" "}
+                        {option.product_type} - Valor do imposto:{" "}
+                        {option.tax_percentage}
+                      </MenuItem>
+                    ))}
+                  </InputSelect>
 
                   <IconButton aria-label="Adicionar tipo de produto">
                     <AddIcon />
