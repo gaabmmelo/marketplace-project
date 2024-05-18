@@ -31,8 +31,9 @@ class Database {
         public function insert($query) {
             error_log("Executing query: " . $query);
             $result = pg_query($this->link, $query);
+
             if ($result) {
-                return pg_last_oid($result);
+                return true;
             } else {
                 error_log("Query failed: " . pg_last_error($this->link));
                 return false;

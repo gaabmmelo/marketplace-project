@@ -26,7 +26,7 @@ class ProductController {
             $result = $productModel->create($name, $type_id);
 
             if ($result) {
-                echo json_encode(['success' => true, 'id' => $result]);
+                echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success'  => false, 'message' => 'Failed to insert product']);
             }
