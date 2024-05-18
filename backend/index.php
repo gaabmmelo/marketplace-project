@@ -19,5 +19,14 @@ $router->get('/product_type/{id}', '\App\Controllers\ProductTypeController@show'
 $router->post('/product_type', '\App\Controllers\ProductTypeController@create');
 $router->put('/product_type/{id}', 'ProductTypeController@update');
 $router->delete('/product_type/{id}', 'ProductTypeController@delete');
+$router->options('/product_type', function() { /* ... */ });
+
+/*VENDAS*/
+$router->get('/sale', '\App\Controllers\ProductTypeController@index');
+$router->get('/sale/{id}', '\App\Controllers\ProductTypeController@show');
+$router->post('/sale', '\App\Controllers\ProductTypeController@create');
+$router->put('/sale/{id}', 'ProductTypeController@update');
+$router->delete('/sale/{id}', 'ProductTypeController@delete');
+$router->options('/sale', function() { /* ... */ });
 
 $router->run();
