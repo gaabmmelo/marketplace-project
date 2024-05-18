@@ -5,6 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import StorefrontIcon from "@mui/icons-material/Storefront";
+import { useNavigate } from "react-router-dom";
 
 const darkTheme = createTheme({
   palette: {
@@ -15,6 +16,10 @@ const darkTheme = createTheme({
 });
 
 export default function MenuAppBar() {
+  const navigate = useNavigate();
+
+  const redirectPage = (url) => navigate(url);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={darkTheme}>
@@ -22,10 +27,12 @@ export default function MenuAppBar() {
           <Toolbar>
             <StorefrontIcon sx={{ fontSize: "45px", marginLeft: "15px" }} />
             <Typography
+              onClick={() => redirectPage("/")}
               variant="h6"
               component="div"
               sx={{
                 alignItems: "center",
+                cursor: "pointer",
                 display: "flex",
                 fontFamily: "'Lilita One', sans-serif;",
                 flexGrow: 1,

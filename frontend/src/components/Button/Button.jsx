@@ -12,23 +12,12 @@ export function ButtonStyled({
   variant,
   ...other
 }) {
-  const useStyle = {
-    "&:hover": {
-      boxShadow: "none !important",
-    },
-    "&:active": {
-      boxShadow: "none !important",
-      backgroundColor: "#3c52b2 !important",
-    },
-  };
-
   return (
     <Button
       color={color}
       onClick={handler}
       size={size}
       sx={{
-        ...useStyle,
         fontSize: "18px",
         textTransform: "initial",
         marginTop: "20px",

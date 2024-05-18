@@ -1,8 +1,8 @@
 import "./index.scss";
 import { Grid, InputLabel, Modal, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { TituloModal } from "./TituloModal";
 import { ButtonStyled } from "components/Button/Button";
+import { ModalTitle } from "./TituloModal";
 
 export function ModalAddProductType({ handleClose, open }) {
   const [referenciaAlterar, setReferenciaAlterar] = useState({});
@@ -31,7 +31,7 @@ export function ModalAddProductType({ handleClose, open }) {
   return (
     <Modal onClose={handleClose} open={open}>
       <Grid className="modal" container padding={3}>
-        <TituloModal titulo="Adicionar novo tipo de produto" />
+        <ModalTitle title="Novo tipo de produto" />
 
         <Grid item xs={12}>
           <InputLabel
@@ -39,7 +39,7 @@ export function ModalAddProductType({ handleClose, open }) {
             sx={{
               color: "#003641",
               fontWeight: "bolder",
-              margin: "10px 0px 12px",
+              margin: "25px 0px 6px",
             }}
           >
             Nome do tipo
@@ -72,19 +72,13 @@ export function ModalAddProductType({ handleClose, open }) {
             size="large"
             onClick={handleClose}
             title={"Cancelar"}
-            styles={{ borderColor: "#f3f3f3", color: "#000" }}
             variant="outlined"
           />
 
           <ButtonStyled
-            color="secondary"
+            color="primary"
             handler={() => handleAdicionar(referenciaAlterar)}
             size="large"
-            styles={{
-              backgroundColor: "#003641",
-              fontWeight: "500",
-              textTransform: "initial",
-            }}
             title={"Adicionar"}
             variant="contained"
           />
