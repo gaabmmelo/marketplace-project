@@ -10,16 +10,21 @@ export function ModalAddProductType({ handleClose, open }) {
   const [productType, setProductType] = useState({});
 
   const handleChange = (attribute, value) => {
-    if (attribute === "tax_value") {
+    if (attribute === "tax_percentage") {
       const valor = value.replace(/\./g, "");
       const valorFormatado = parseFloat(valor.replace(",", ".")).toFixed(2);
-      console.log("teste", valorFormatado);
-    }
+      console.log(valorFormatado);
 
-    setProductType({
-      ...productType,
-      [attribute]: value,
-    });
+      setProductType({
+        ...productType,
+        tax_percentage: valorFormatado,
+      });
+    } else {
+      setProductType({
+        ...productType,
+        [attribute]: value,
+      });
+    }
   };
 
   const handleAdd = async (type) => {
@@ -93,8 +98,8 @@ export function ModalAddProductType({ handleClose, open }) {
           <InputCurrency
             fullWidth
             placeholder={"Valor do imposto"}
-            value={productType.tax_value || ""}
-            onChange={(value) => handleChange("tax_value", value)}
+            value={productType.tax_percentage || ""}
+            onChange={(value) => handleChange("tax_percentage", value)}
           />
         </Grid>
 
