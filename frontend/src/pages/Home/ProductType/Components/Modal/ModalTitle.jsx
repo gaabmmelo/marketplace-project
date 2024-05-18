@@ -10,7 +10,10 @@ export function ModalTitle({ title }) {
 
   return (
     <Grid item sx={styleGridItem} xs={12}>
-      <Typography sx={{ fontWeight: "600", paddingTop: "0px" }} variant="h6">
+      <Typography
+        sx={{ fontWeight: "600", pt: "0px", pb: "10px" }}
+        variant="h6"
+      >
         {title}
       </Typography>
     </Grid>

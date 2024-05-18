@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { ButtonStyled } from "components/Button/Button";
 import { ModalTitle } from "./ModalTitle";
 import axios from "axios";
+import { Label } from "components/Input/Label";
 
 export function ModalAddProductType({ handleClose, open }) {
   const [productType, setProductType] = useState({
@@ -83,16 +84,7 @@ export function ModalAddProductType({ handleClose, open }) {
         <ModalTitle title="Novo tipo de produto" />
 
         <Grid item xs={12}>
-          <InputLabel
-            htmlFor="product_type"
-            sx={{
-              color: "#003641",
-              fontWeight: "bolder",
-              margin: "25px 0px 6px",
-            }}
-          >
-            Nome do tipo
-          </InputLabel>
+          <Label htmlFor="product_type" label="Nome do tipo" />
 
           <TextField
             fullWidth
@@ -114,8 +106,9 @@ export function ModalAddProductType({ handleClose, open }) {
             value={productType.product_type}
           />
 
+          <Label htmlFor="product_type" label="Valor do imposto" />
+
           <TextField
-            fullWidth
             placeholder="Valor do imposto"
             InputProps={{
               startAdornment: (
