@@ -7,9 +7,13 @@ require "vendor/autoload.php";
 
 $router = new \Bramus\Router\Router();
 
+/*  */
 $router->get('/product', '\App\Controllers\ProductController@index');
 $router->get('/product/{id}', '\App\Controllers\ProductController@show');
 $router->post('/product', '\App\Controllers\ProductController@create');
 $router->options('/product', function() { /* ... */ });
+
+/*TIPO DE PRODUTO*/
+$router->get('/product_type', '\App\Controllers\ProductTypeController@index');
 
 $router->run();
