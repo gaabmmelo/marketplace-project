@@ -1,60 +1,79 @@
 import "./index.scss";
-import { Grid, InputLabel, Modal, TextField } from "@mui/material";
+import {
+  Grid,
+  InputAdornment,
+  InputLabel,
+  Modal,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import { ButtonStyled } from "components/Button/Button";
 import { ModalTitle } from "./ModalTitle";
-import InputCurrency from "components/Input/InputCurrency";
 import axios from "axios";
 
 export function ModalAddProductType({ handleClose, open }) {
-  const [productType, setProductType] = useState({});
+  const [productType, setProductType] = useState({
+    product_type: "",
+    tax_percentage: "",
+  });
 
   const handleChange = (attribute, value) => {
-    if (attribute === "tax_percentage") {
-      const valor = value.replace(/\./g, "");
-      const valorFormatado = parseFloat(valor.replace(",", ".")).toFixed(2);
-      console.log(valorFormatado);
-
-      setProductType({
-        ...productType,
-        tax_percentage: valorFormatado,
-      });
-    } else {
-      setProductType({
-        ...productType,
-        [attribute]: value,
-      });
-    }
+    setProductType({
+      ...productType,
+      [attribute]: value,
+    });
   };
 
-  const handleAdd = async (type) => {
+  const formatarMoeda = (value) => {
+    const valorFormatado = value.replace(/\D/gu, "");
+
+    const valorFormatado1 = valorFormatado.replace(
+      /(?<temp2>\d{1})(?<temp1>\d{1,2})$/u,
+      "$1,$2"
+    );
+
+    const valorFormatado2 = valorFormatado1.replace(
+      /(?<temp2>\d)(?=(?<temp1>\d{3})+(?!\d))/gu,
+      "$1."
+    );
+
+    const valorFinal = `${valorFormatado2}`;
+
+    return valorFinal;
+  };
+
+  const handleAdd = async () => {
     try {
-      if (type.id) {
-        //await atualizarReferencia(referencia);
-      } else {
-        axios
-          .post(
-            "http://localhost:8080/product_type",
-            {
-              ...productType,
+      const formattedTaxPercentage = parseFloat(
+        productType.tax_percentage.replace(",", ".")
+      ).toFixed(2);
+
+      axios
+        .post(
+          "http://localhost:8080/product_type",
+          {
+            ...productType,
+            tax_percentage: formattedTaxPercentage,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
             },
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          )
-          .then((response) => {
-            console.log(response.data);
-            setProductType({});
-            handleClose();
-          })
-          .catch((error) => {
-            console.error("Error:", error);
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          setProductType({
+            product_type: "",
+            tax_percentage: "",
           });
-      }
+          handleClose();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     } catch (error) {
-      console.log("tttt");
+      console.log("Error:", error);
     }
   };
 
@@ -92,14 +111,32 @@ export function ModalAddProductType({ handleClose, open }) {
               },
               marginBottom: "1em",
             }}
-            value={productType.product_type || ""}
+            value={productType.product_type}
           />
 
-          <InputCurrency
+          <TextField
             fullWidth
-            placeholder={"Valor do imposto"}
-            value={productType.tax_percentage || ""}
-            onChange={(value) => handleChange("tax_percentage", value)}
+            placeholder="Valor do imposto"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">R$</InputAdornment>
+              ),
+              sx: {
+                "& input": {
+                  textAlign: "right",
+                },
+                "&::placeholder": {
+                  color: "#667085",
+                  fontWeight: "500",
+                  opacity: 1,
+                },
+              },
+            }}
+            onChange={(evt) =>
+              handleChange("tax_percentage", formatarMoeda(evt.target.value))
+            }
+            type="text"
+            value={formatarMoeda(productType.tax_percentage)}
           />
         </Grid>
 
@@ -108,15 +145,15 @@ export function ModalAddProductType({ handleClose, open }) {
             color="secondary"
             size="large"
             onClick={handleClose}
-            title={"Cancelar"}
+            title="Cancelar"
             variant="outlined"
           />
 
           <ButtonStyled
             color="primary"
-            handler={() => handleAdd(productType)}
+            handler={handleAdd}
             size="large"
-            title={"Adicionar"}
+            title="Adicionar"
             variant="contained"
           />
         </Grid>
