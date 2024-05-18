@@ -23,7 +23,9 @@ export function TblHead({ backgroundColor, table }) {
               key={headCell.id}
               sortDirection={orderBy === headCell.id ? order : false}
               sx={{
-                color: (theme) => theme.palette.info.light,
+                color: "#7d7d7d",
+                fontSize: "16px",
+                fontWeight: "bold",
                 padding: "10px",
                 ...headCell?.sx,
               }}

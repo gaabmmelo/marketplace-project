@@ -1,11 +1,15 @@
 .home {
     background-color: #f7f7f7;
-    border-radius: 50px;
+    border-radius: 3.15rem;
+}
+
+.home .homeTable{
+    padding: 1.5rem 2.5rem 6.25rem;
 }
 
 .backgroundContainerHeader {
     background: #00A091;
-    height: 60%;
+    height: 70%;
     position: absolute;
     width: 100%;
     z-index: -1;

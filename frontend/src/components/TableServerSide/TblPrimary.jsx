@@ -1,5 +1,4 @@
 import { NoRecordsFound } from "./NoRecordsFound";
-import PropTypes from "prop-types";
 import React from "react";
 import { TblBody } from "./Components/TblBody";
 import { TblContainer } from "./Components/TblContainer";
