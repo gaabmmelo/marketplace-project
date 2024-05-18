@@ -1,5 +1,4 @@
 import { Box, CircularProgress } from "@mui/material";
-import PropTypes from "prop-types";
 import React from "react";
 
 export default function Loading({ color }) {
