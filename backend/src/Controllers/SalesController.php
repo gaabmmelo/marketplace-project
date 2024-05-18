@@ -20,16 +20,18 @@ class ProductController {
 
         if (isset($data['product_id']) 
         && isset($data['product_type_id']) 
-        && isset($data['$product_quantity']) 
-        && isset($data['$total_purchase'])) 
+        && isset($data['product_quantity']) 
+        && isset($data['total_purchase']) 
+        && isset($data['total_tax_purchase'])) 
         {
             $product_id = $data['product_id'];
             $product_type_id = $data['product_type_id'];
             $product_quantity = $data['product_quantity'];
             $total_purchase = $data['total_purchase'];
+            $total_purchase_tax = $data['total_purchase_tax'];
 
             $productModel = new Product();
-            $result = $productModel->create($product_id, $product_type_id, $product_quantity, $total_purchase);
+            $result = $productModel->create($product_id, $product_type_id, $product_quantity, $total_purchase, $total_purchase_tax);
 
             if ($result) {
                 echo json_encode(['success' => true, 'id' => $result]);
