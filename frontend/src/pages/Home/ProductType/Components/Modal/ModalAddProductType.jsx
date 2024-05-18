@@ -2,29 +2,54 @@ import "./index.scss";
 import { Grid, InputLabel, Modal, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { ButtonStyled } from "components/Button/Button";
-import { ModalTitle } from "./TituloModal";
+import { ModalTitle } from "./ModalTitle";
+import InputCurrency from "components/Input/InputCurrency";
+import axios from "axios";
 
 export function ModalAddProductType({ handleClose, open }) {
-  const [referenciaAlterar, setReferenciaAlterar] = useState({});
+  const [productType, setProductType] = useState({});
 
-  const handleChangeAlteracao = (atributo, valor) => {
-    setReferenciaAlterar({
-      ...referenciaAlterar,
-      [atributo]: valor,
+  const handleChange = (attribute, value) => {
+    if (attribute === "tax_value") {
+      const valor = value.replace(/\./g, "");
+      const valorFormatado = parseFloat(valor.replace(",", ".")).toFixed(2);
+      console.log("teste", valorFormatado);
+    }
+
+    setProductType({
+      ...productType,
+      [attribute]: value,
     });
   };
 
-  const handleAdicionar = async (referencia) => {
+  const handleAdd = async (type) => {
     try {
-      if (referencia.id) {
+      if (type.id) {
         //await atualizarReferencia(referencia);
       } else {
-        //await adicionarReferencia(referencia);
+        axios
+          .post(
+            "http://localhost:8080/product_type",
+            {
+              ...productType,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response.data);
+            setProductType({});
+            handleClose();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       }
-      setReferenciaAlterar({});
-      handleClose();
     } catch (error) {
-      //handleErroSnackbar(error);
+      console.log("tttt");
     }
   };
 
@@ -35,7 +60,7 @@ export function ModalAddProductType({ handleClose, open }) {
 
         <Grid item xs={12}>
           <InputLabel
-            htmlFor="area"
+            htmlFor="product_type"
             sx={{
               color: "#003641",
               fontWeight: "bolder",
@@ -47,9 +72,9 @@ export function ModalAddProductType({ handleClose, open }) {
 
           <TextField
             fullWidth
-            id="link"
+            id="product_type"
             inputProps={{ "aria-label": "simple-tabpanel" }}
-            onChange={(evt) => handleChangeAlteracao("link", evt.target.value)}
+            onChange={(evt) => handleChange("product_type", evt.target.value)}
             placeholder="Informe o nome do tipo do produto"
             sx={{
               input: {
@@ -62,7 +87,14 @@ export function ModalAddProductType({ handleClose, open }) {
               },
               marginBottom: "1em",
             }}
-            value={referenciaAlterar.link || ""}
+            value={productType.product_type || ""}
+          />
+
+          <InputCurrency
+            fullWidth
+            placeholder={"Valor do imposto"}
+            value={productType.tax_value || ""}
+            onChange={(value) => handleChange("tax_value", value)}
           />
         </Grid>
 
@@ -77,7 +109,7 @@ export function ModalAddProductType({ handleClose, open }) {
 
           <ButtonStyled
             color="primary"
-            handler={() => handleAdicionar(referenciaAlterar)}
+            handler={() => handleAdd(productType)}
             size="large"
             title={"Adicionar"}
             variant="contained"
