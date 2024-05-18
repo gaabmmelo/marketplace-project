@@ -38,5 +38,25 @@ class Database {
                 return false;
             }
         }
+
+        public function update($query, $params) {
+            $result = pg_query_params($this->link, $query, $params);
+            if ($result) {
+                return pg_affected_rows($result);
+            } else {
+                error_log("Query failed: " . pg_last_error($this->link));
+                return false;
+            }
+        }
+    
+        public function delete($query, $params) {
+            $result = pg_query_params($this->link, $query, $params);
+            if ($result) {
+                return pg_affected_rows($result);
+            } else {
+                error_log("Query failed: " . pg_last_error($this->link));
+                return false;
+            }
+        }
     }
 ?>

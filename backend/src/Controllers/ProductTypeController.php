@@ -34,4 +34,31 @@ class ProductTypeController {
             echo json_encode(['success' => false, 'message' => 'Invalid input']);
         }
     }
+
+    public function update($id) {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $name = $data['name'];
+        $type_id = $data['type_id'];
+
+        $productType = new ProductType();
+        $result = $productType->update($id, $name, $type_id);
+
+        if ($result) {
+            echo json_encode(['status' => 'success', 'message' => 'Product type updated successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to update product type.']);
+        }
+    }
+
+    public function delete($id) {
+        $productType = new ProductType();
+        $result = $productType->delete($id);
+
+        if ($result) {
+            echo json_encode(['status' => 'success', 'message' => 'Product type deleted successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to delete product type.']);
+        }
+    }
 }

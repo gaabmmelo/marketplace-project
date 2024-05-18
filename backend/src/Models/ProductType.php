@@ -23,4 +23,24 @@ class ProductType {
 
         return $conn->insert($query);
     }
+
+    public function update($id, $name, $type_id) {
+        $conn = new Database();
+        $conn->connect();
+
+        $query = "UPDATE public.product_type SET product_type = :name, tax_percentage = :type_id WHERE id = :id";
+        error_log("Update query: " . $query);
+
+        return $conn->update($query, ['id' => $id, 'name' => $name, 'type_id' => $type_id]);
+    }
+
+    public function delete($id) {
+        $conn = new Database();
+        $conn->connect();
+
+        $query = "DELETE FROM public.product_type WHERE id = :id";
+        error_log("Delete query: " . $query);
+
+        return $conn->delete($query, ['id' => $id]);
+    }
 }
