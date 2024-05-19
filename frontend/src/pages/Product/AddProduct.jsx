@@ -15,17 +15,28 @@ import InputSelect from "components/Input/InputSelect";
 import { Label } from "components/Input/Label";
 
 export function AddProduct() {
-  const [productName, setProductName] = useState("");
+  const [product, setProduct] = useState({
+    product_name: "",
+    product_value: "",
+  });
+
   const [productTypeId, setProductTypeId] = useState("");
   const [productTypes, setProductTypes] = useState([]);
+
+  const handleChange = (attribute, value) => {
+    setProduct({
+      ...product,
+      [attribute]: value,
+    });
+  };
 
   const handleAdd = () => {
     axios
       .post(
         "http://localhost:8080/product",
         {
-          name: productName,
-          type_id: productTypeId,
+          ...product,
+          product_type_id: productTypeId,
         },
         {
           headers: {
@@ -35,6 +46,10 @@ export function AddProduct() {
       )
       .then((response) => {
         console.log(response.data);
+        setProduct({
+          product_name: "",
+          product_value: "",
+        });
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -74,16 +89,20 @@ export function AddProduct() {
                     <Label label="Nome do produto" />
                     <InputRender
                       placeholder="Informe o nome do produto"
-                      value={productName}
-                      onChange={(e) => setProductName(e.target.value)}
+                      value={product.productName}
+                      onChange={(evt) =>
+                        handleChange("product_name", evt.target.value)
+                      }
                     />
                   </Grid>
                   <Grid item xs={6}>
                     <Label label="Valor do produto" />
                     <InputRender
                       placeholder="Informe o nome do produto"
-                      value={productName}
-                      onChange={(e) => setProductName(e.target.value)}
+                      value={product.productValue}
+                      onChange={(evt) =>
+                        handleChange("product_value", evt.target.value)
+                      }
                     />
                   </Grid>
                   <Grid item xs={12}>
