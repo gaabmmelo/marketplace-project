@@ -7,6 +7,7 @@ import TabsRender from "components/Tabs/TabsRender";
 import { ViewTableProduct } from "pages/View/ViewTableProduct";
 import { ViewTableProductType } from "pages/View/ViewTableProductType";
 import { ViewTableProductSale } from "pages/View/ViewTableProductSale";
+import Footer from "components/Footer/Footer";
 
 export function Home() {
   const [valueTab, setValueTab] = useState(0);
@@ -47,65 +48,68 @@ export function Home() {
   };
 
   return (
-    <Box className={styles.home}>
-      <MenuAppBar />
+    <>
+      <Box className={styles.home}>
+        <MenuAppBar />
 
-      <Header />
+        <Header />
 
-      <Grid container className={styles.homeTable}>
-        <Grid item md={12} xs={12}>
-          <Paper sx={{ borderRadius: "20px", pb: "50px" }}>
-            <Typography
-              variant="h5"
-              gutterBottom
-              pl={4}
-              pt={4}
-              pb={1}
-              pr={4}
-              sx={{ color: "#00A091", textAlign: "left", fontWeight: "600" }}
-            >
-              Visualização
-            </Typography>
-
-            <Alert
-              sx={{
-                borderRadius: "20px",
-                fontSize: "16px",
-                marginLeft: 4,
-                marginRight: 4,
-                marginBottom: 3,
-                justifyContent: "center",
-                width: "38%",
-              }}
-              severity="info"
-            >
-              Navegue entre as tabelas de produtos, tipos de produto e vendas
-              para realizar ações!
-            </Alert>
-
-            <Paper
-              sx={{
-                border: "1px solid #e0e0e0",
-                borderRadius: "20px",
-                p: 1,
-                m: "0px 30px 0px 30px",
-              }}
-            >
-              <TabsRender
-                handleChange={handleChange}
-                orientation="horizontal"
-                sx={{ mt: 1 }}
-                tabsItems={tabsItems}
-                value={valueTab}
+        <Grid container className={styles.homeTable}>
+          <Grid item md={12} xs={12}>
+            <Paper sx={{ borderRadius: "20px", pb: "50px" }}>
+              <Typography
+                variant="h5"
+                gutterBottom
+                pl={4}
+                pt={4}
+                pb={1}
+                pr={4}
+                sx={{ color: "#00A091", textAlign: "left", fontWeight: "600" }}
               >
-                <Box sx={{ margin: "15px 10px 0 10px" }}>
-                  {returnTab(valueTab)}
-                </Box>
-              </TabsRender>
+                Visualização
+              </Typography>
+
+              <Alert
+                sx={{
+                  borderRadius: "20px",
+                  fontSize: "16px",
+                  marginLeft: 4,
+                  marginRight: 4,
+                  marginBottom: 3,
+                  justifyContent: "center",
+                  width: "38%",
+                }}
+                severity="info"
+              >
+                Navegue entre as tabelas de produtos, tipos de produto e vendas
+                para realizar ações!
+              </Alert>
+
+              <Paper
+                sx={{
+                  border: "1px solid #e0e0e0",
+                  borderRadius: "20px",
+                  p: 1,
+                  m: "0px 30px 0px 30px",
+                }}
+              >
+                <TabsRender
+                  handleChange={handleChange}
+                  orientation="horizontal"
+                  sx={{ mt: 1 }}
+                  tabsItems={tabsItems}
+                  value={valueTab}
+                >
+                  <Box sx={{ margin: "15px 10px 0 10px" }}>
+                    {returnTab(valueTab)}
+                  </Box>
+                </TabsRender>
+              </Paper>
             </Paper>
-          </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+      <Footer />
+    </>
   );
 }
