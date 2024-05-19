@@ -22,11 +22,11 @@ $router->delete('/product_type/{id}', 'ProductTypeController@delete');
 $router->options('/product_type', function() { /* ... */ });
 
 /*VENDAS*/
-$router->get('/sale', '\App\Controllers\ProductTypeController@index');
-$router->get('/sale/{id}', '\App\Controllers\ProductTypeController@show');
-$router->post('/sale', '\App\Controllers\ProductTypeController@create');
-$router->put('/sale/{id}', 'ProductTypeController@update');
-$router->delete('/sale/{id}', 'ProductTypeController@delete');
+$router->get('/sale', '\App\Controllers\SalesController@index');
+$router->get('/sale/{id}', '\App\Controllers\SalesController@show');
+$router->post('/sale', '\App\Controllers\SalesController@create');
+$router->put('/sale/{id}', 'SalesController@update');
+$router->delete('/sale/{id}', 'SalesController@delete');
 $router->options('/sale', function() { /* ... */ });
 
 $router->run();
