@@ -6,16 +6,16 @@ export function InputRender({
   placeholder,
   onChange,
   value,
+  InputProps,
   id,
-  inputProps,
 }) {
   return (
     <TextField
       id={id}
+      InputProps={InputProps}
       placeholder={placeholder}
       onChange={onChange}
       value={value}
-      inputProps={inputProps}
       sx={{
         svg: { color: (theme) => theme.palette.secondary.main },
         marginTop: "10px",

@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   Box,
   Grid,
+  InputAdornment,
   InputLabel,
   MenuItem,
   Paper,
@@ -13,8 +14,10 @@ import { InputRender } from "../../components/Input/InputRender";
 import { ButtonStyled } from "../../components/Button/Button";
 import InputSelect from "components/Input/InputSelect";
 import { Label } from "components/Input/Label";
+import { useFormatCurrency } from "hooks/useFormatCurrency";
 
 export function AddProduct() {
+  const { formatCurrency } = useFormatCurrency();
   const [product, setProduct] = useState({
     product_name: "",
     product_value: "",
@@ -97,17 +100,24 @@ export function AddProduct() {
                       }
                     />
                   </Grid>
+
                   <Grid item xs={6}>
                     <Label label="Valor do produto" />
                     <InputRender
                       id="product_value"
-                      placeholder="Informe o nome do produto"
-                      value={product.product_value}
+                      placeholder="Informe o valor do produto"
+                      value={formatCurrency(product.product_value)}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">R$</InputAdornment>
+                        ),
+                      }}
                       onChange={(evt) =>
                         handleChange("product_value", evt.target.value)
                       }
                     />
                   </Grid>
+
                   <Grid item xs={12}>
                     <Label label="Tipo do produto" />
                     <InputSelect

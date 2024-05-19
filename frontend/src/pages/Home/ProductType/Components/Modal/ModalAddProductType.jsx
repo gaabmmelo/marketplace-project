@@ -6,8 +6,10 @@ import { ModalTitle } from "./ModalTitle";
 import axios from "axios";
 import { Label } from "components/Input/Label";
 import { InputRender } from "components/Input/InputRender";
+import { useFormatCurrency } from "hooks/useFormatCurrency";
 
 export function ModalAddProductType({ handleClose, open }) {
+  const { formatCurrency } = useFormatCurrency();
   const [productType, setProductType] = useState({
     product_type: "",
     tax_percentage: "",
@@ -18,24 +20,6 @@ export function ModalAddProductType({ handleClose, open }) {
       ...productType,
       [attribute]: value,
     });
-  };
-
-  const formatCurrency = (value) => {
-    const formattedValue = value.replace(/\D/gu, "");
-
-    const formattedValue1 = formattedValue.replace(
-      /(?<temp2>\d{1})(?<temp1>\d{1,2})$/u,
-      "$1,$2"
-    );
-
-    const formattedValue2 = formattedValue1.replace(
-      /(?<temp2>\d)(?=(?<temp1>\d{3})+(?!\d))/gu,
-      "$1."
-    );
-
-    const finalValue = `${formattedValue2}`;
-
-    return finalValue;
   };
 
   const handleAdd = async () => {
@@ -101,7 +85,7 @@ export function ModalAddProductType({ handleClose, open }) {
 
           <Label htmlFor="product_type" label="Valor do imposto" />
 
-          <TextField
+          <InputRender
             placeholder="Valor do imposto"
             InputProps={{
               startAdornment: (
