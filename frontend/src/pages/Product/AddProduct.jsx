@@ -131,7 +131,7 @@ export function AddProduct() {
                           {" "}
                           Identificador: #00{option.id} | Tipo do produto:{" "}
                           {option.product_type} - Valor do imposto:{" "}
-                          {option.tax_percentage}
+                          {formatCurrency(option.tax_percentage)}
                         </MenuItem>
                       ))}
                     </InputSelect>
