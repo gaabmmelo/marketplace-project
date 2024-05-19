@@ -17,6 +17,10 @@ const headCells = [
     label: "Tipo de produto",
   },
   {
+    id: "product_value",
+    label: "Valor do produto",
+  },
+  {
     disableSorting: true,
     id: "editar",
     label: "Editar",
@@ -36,7 +40,7 @@ export function ViewTableProduct() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/product", {
+        const response = await axios.get("http://localhost:8080/products", {
           headers: {
             "Content-Type": "application/json",
           },

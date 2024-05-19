@@ -15,8 +15,13 @@ import { ButtonStyled } from "../../components/Button/Button";
 import InputSelect from "components/Input/InputSelect";
 import { Label } from "components/Input/Label";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
+import { useNavigate } from "react-router-dom";
 
 export function AddProduct() {
+  const navigate = useNavigate();
+
+  const redirectPage = (url) => navigate(url);
+
   const { formatCurrency } = useFormatCurrency();
   const [product, setProduct] = useState({
     product_name: "",
@@ -144,6 +149,14 @@ export function AddProduct() {
                   alignItems={"flex-end"}
                   justifyContent={"center"}
                 >
+                  <ButtonStyled
+                    color="secondary"
+                    size="large"
+                    onClick={() => redirectPage("/")}
+                    title="Cancelar"
+                    variant="outlined"
+                  />
+
                   <ButtonStyled
                     handler={handleAdd}
                     variant="contained"

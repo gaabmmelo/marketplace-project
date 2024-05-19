@@ -2,6 +2,7 @@ import { TableCell, TableRow } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import React from "react";
 import Icon from "components/Icon";
+import { useFormatCurrency } from "hooks/useFormatCurrency";
 
 export function ProductType({
   item,
@@ -10,13 +11,16 @@ export function ProductType({
   handleEdicao,
   callbackExcluir,
 }) {
+  const { formatCurrency } = useFormatCurrency();
   return (
     <TableRow>
-      <TableCell>#T00{item.id}</TableCell>
+      <TableCell>
+        <b>#TP00{item.id}</b>
+      </TableCell>
 
       <TableCell>{item.product_type}</TableCell>
 
-      <TableCell>{item.tax_percentage}</TableCell>
+      <TableCell>R$ {formatCurrency(item.tax_percentage)}</TableCell>
 
       <TableCell>
         <Icon

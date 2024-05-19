@@ -39,7 +39,7 @@ export function Header() {
       >
         <Box className={styles.backgroundContainerHeader} />
 
-        <Grid container padding="25px 40px 40px 40px">
+        <Grid container flexWrap={"nowrap"} padding="25px 40px 40px 40px">
           <Description />
 
           <GroupedCards handleOpenModal={handleOpenModal} />
