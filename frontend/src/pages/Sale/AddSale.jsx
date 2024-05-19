@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid, MenuItem, Paper, Typography } from "@mui/material";
+import { Box, Grid, Input, MenuItem, Paper, Typography } from "@mui/material";
 import axios from "axios";
 import { ButtonStyled } from "components/Button/Button";
 import { InputRender } from "components/Input/InputRender";
@@ -13,6 +13,13 @@ export function AddSale() {
   const { formatCurrency } = useFormatCurrency();
   const [products, setProducts] = useState([]);
 
+  const [productTypeId, setProductTypeId] = useState("");
+  const [productType, setProductType] = useState("");
+  const [productValue, setProductValue] = useState("");
+
+  const [soldProducts, setSoldProducts] = useState([]);
+  const [productSelected, setProductSelected] = useState("");
+
   const [sale, setSale] = useState({
     product_id: "",
     product_type_id: "",
@@ -21,9 +28,6 @@ export function AddSale() {
     total_tax: "",
   });
 
-  const [soldProducts, setSoldProducts] = useState([]);
-  const [productSelected, setProductSelected] = useState("");
-
   const handleChange = (attribute, value) => {
     setSale({
       ...sale,
@@ -31,18 +35,36 @@ export function AddSale() {
     });
   };
 
+  const handleProductSelect = (productId) => {
+    const selectedProduct = products.find(
+      (product) => product.id === productId
+    );
+    setProductSelected(productId);
+    setProductType(selectedProduct?.product_type ?? "");
+    setProductTypeId(selectedProduct?.product_type_id ?? "");
+    setProductValue(selectedProduct?.product_value ?? "");
+  };
+
   const handleAddProduct = () => {
+    console.log(sale);
+    const selectedProduct = products.find(
+      (product) => product.id === productSelected
+    );
+
     const newProduct = {
       id: Date.now(),
       product_id: productSelected,
-      product_name:
-        products.find((product) => product.id === productSelected)
-          ?.product_name ?? "",
+      product_name: selectedProduct?.product_name ?? "",
+      product_value: selectedProduct?.product_value,
+      product_type_id: productTypeId,
+      product_type: productType?.product_type,
       product_quantity: sale.product_quantity,
       total_purchase: sale.total_purchase,
       total_tax: sale.total_tax,
     };
+
     setSoldProducts([...soldProducts, newProduct]);
+
     setSale({
       product_id: "",
       product_name: "",
@@ -89,17 +111,17 @@ export function AddSale() {
                 </Typography>
 
                 <Grid container spacing={2} alignItems={"flex-end"}>
-                  <Grid item xs={6}>
+                  <Grid item xs={12}>
                     <Label label="Produto" />
                     <InputSelect
-                      onChange={(e) => setProductSelected(e.target.value)}
+                      onChange={(e) => handleProductSelect(e.target.value)}
                       value={productSelected}
-                      sx={{ textAlign: "left" }}
+                      sx={{ textAlign: "left", mt: "10px", mb: "20px" }}
                       label={"Selecione o tipo do produto"}
                     >
                       {products.map((option) => (
                         <MenuItem key={option.id} value={option.id}>
-                          Identificador: #00{option.id} | Nome do produto:{" "}
+                          <b>Id: #00{option.id}</b>&nbsp;| Nome do produto:{" "}
                           {option.product_name}
                         </MenuItem>
                       ))}
@@ -107,12 +129,50 @@ export function AddSale() {
                   </Grid>
                 </Grid>
 
-                <Grid
-                  container
-                  mt={4}
-                  alignItems={"flex-end"}
-                  justifyContent={"center"}
-                >
+                <Grid container spacing={2} alignItems={"flex-end"}>
+                  {productSelected ? (
+                    <>
+                      <Grid item xs={4}>
+                        <Label label="Valor do produto" />
+                        <InputRender
+                          disabled
+                          value={`R$ ${formatCurrency(productValue)}`}
+                        />
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Label label="Tipo do produto" />
+                        <InputRender
+                          disabled
+                          value={`#TP ${productTypeId} - ${productType?.product_type}`}
+                        />
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Label label="Valor do imposto" />
+                        <InputRender
+                          disabled
+                          value={`R$ ${formatCurrency(
+                            productType?.tax_percentage
+                          )}`}
+                        />
+                      </Grid>
+                      <Grid item xs={3}>
+                        <Label label="Quantidade do produto desejada" />
+
+                        <InputRender
+                          id="product_quantity"
+                          inputProps={{ "aria-label": "simple-tabpanel" }}
+                          onChange={(evt) =>
+                            handleChange("product_quantity", evt.target.value)
+                          }
+                          type={"number"}
+                          value={sale.product_quantity || ""}
+                        />
+                      </Grid>
+                    </>
+                  ) : null}
+                </Grid>
+
+                <Grid container mt={4}>
                   <ButtonStyled
                     handler={handleAddProduct}
                     variant="contained"
@@ -130,6 +190,7 @@ export function AddSale() {
               >
                 {/* O sistema deve apresentar o valor de cada item multiplicado pela quantidade adquirida;
                 - quantidade pago de imposto em cada item
+
                 - um totalizador do valor da compra
                 - um totalizador do valor dos impostos;*/}
                 <Grid item xs={12} sm={10} md={10} mb={8}>

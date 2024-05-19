@@ -1,4 +1,4 @@
-export const useFormatCurrency = (value) => {
+export const useFormatCurrency = () => {
   const formatCurrency = (value) => {
     const formattedValue = value.replace(/\D/gu, "");
 

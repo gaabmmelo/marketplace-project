@@ -7,11 +7,15 @@ export function InputRender({
   onChange,
   value,
   InputProps,
+  type,
+  disabled,
   id,
 }) {
   return (
     <TextField
       id={id}
+      type={type}
+      disabled={disabled}
       InputProps={InputProps}
       placeholder={placeholder}
       onChange={onChange}

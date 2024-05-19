@@ -13,7 +13,11 @@ export function TableLineProductsSales({
     <TableRow>
       <TableCell>{item.product_id}</TableCell>
 
-      <TableCell>{item.product_name}</TableCell>
+      <TableCell>
+        {item.product_type_id} - {item.product_name}
+      </TableCell>
+
+      <TableCell>{item.product_type}</TableCell>
 
       <TableCell>{item.product_quantity}</TableCell>
 
