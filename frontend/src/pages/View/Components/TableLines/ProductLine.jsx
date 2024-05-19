@@ -1,5 +1,4 @@
 import { TableCell, TableRow } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import React from "react";
 import Icon from "components/Icon";
