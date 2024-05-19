@@ -9,7 +9,8 @@ export function InputRender({ params, placeholder, onChange, value }) {
       value={value}
       sx={{
         svg: { color: (theme) => theme.palette.secondary.main },
-        marginTop: "15px",
+        marginTop: "10px",
+        marginBottom: "20px",
         width: "100%",
       }}
       {...params}

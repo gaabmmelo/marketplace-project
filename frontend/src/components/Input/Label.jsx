@@ -8,7 +8,7 @@ export function Label({ params, htmlFor, label }) {
       sx={{
         color: "#003641",
         fontWeight: "bolder",
-        margin: "15px 0px 6px",
+        textAlign: "left",
       }}
     >
       {label}

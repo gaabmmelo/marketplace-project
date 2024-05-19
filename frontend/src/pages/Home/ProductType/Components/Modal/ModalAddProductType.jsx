@@ -25,36 +25,35 @@ export function ModalAddProductType({ handleClose, open }) {
     });
   };
 
-  const formatarMoeda = (value) => {
-    const valorFormatado = value.replace(/\D/gu, "");
+  const formatCurrency = (value) => {
+    const formattedValue = value.replace(/\D/gu, "");
 
-    const valorFormatado1 = valorFormatado.replace(
+    const formattedValue1 = formattedValue.replace(
       /(?<temp2>\d{1})(?<temp1>\d{1,2})$/u,
       "$1,$2"
     );
 
-    const valorFormatado2 = valorFormatado1.replace(
+    const formattedValue2 = formattedValue1.replace(
       /(?<temp2>\d)(?=(?<temp1>\d{3})+(?!\d))/gu,
       "$1."
     );
 
-    const valorFinal = `${valorFormatado2}`;
+    const finalValue = `${formattedValue2}`;
 
-    return valorFinal;
+    return finalValue;
   };
 
   const handleAdd = async () => {
     try {
-      const formattedTaxPercentage = parseFloat(
-        productType.tax_percentage.replace(",", ".")
-      ).toFixed(2);
+      const valueWithoutPoints = productType.tax_percentage.replace(/\./g, "");
+      const formattedValue = valueWithoutPoints.replace(",", ".");
 
       axios
         .post(
           "http://localhost:8080/product_type",
           {
             ...productType,
-            tax_percentage: formattedTaxPercentage,
+            tax_percentage: formattedValue,
           },
           {
             headers: {
@@ -63,7 +62,6 @@ export function ModalAddProductType({ handleClose, open }) {
           }
         )
         .then((response) => {
-          console.log(response.data);
           setProductType({
             product_type: "",
             tax_percentage: "",
@@ -125,11 +123,9 @@ export function ModalAddProductType({ handleClose, open }) {
                 },
               },
             }}
-            onChange={(evt) =>
-              handleChange("tax_percentage", formatarMoeda(evt.target.value))
-            }
+            onChange={(evt) => handleChange("tax_percentage", evt.target.value)}
             type="text"
-            value={formatarMoeda(productType.tax_percentage)}
+            value={formatCurrency(productType.tax_percentage)}
           />
         </Grid>
 
