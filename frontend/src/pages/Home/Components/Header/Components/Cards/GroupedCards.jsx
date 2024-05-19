@@ -29,7 +29,7 @@ export function GroupedCards({ handleOpenModal }) {
 
       <CardFunctionality
         description="Realizar uma venda"
-        redirectPage={() => redirectPage("/rfis/criar")}
+        redirectPage={() => redirectPage("/add_venda")}
         icon={<SellIcon sx={{ fontSize: "100px" }} />}
         title="Nova venda"
       />
