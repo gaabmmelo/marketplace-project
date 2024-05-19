@@ -18,7 +18,7 @@ class ProductType {
         $conn = new Database();
         $conn->connect();
 
-        $query = "INSERT INTO public.product_type (product_type, tax_percentage) VALUES ($product_type, $tax_percentage)";
+        $query = "INSERT INTO public.product_type (product_type, tax_percentage) VALUES ('$product_type', $tax_percentage)";
         error_log("Insert query: " . $query);
 
         return $conn->insert($query);
