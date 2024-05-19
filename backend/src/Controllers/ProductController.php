@@ -10,20 +10,21 @@ class ProductController {
         echo json_encode($productModel->all());
     }
 
-    public function show($product_id) {
-        print_r($product_id);
+    public function show($id) {
+        print_r($id);
     }
 
     public function create() {
         $data = json_decode(file_get_contents('php://input'), true);
         error_log("Received data: " . json_encode($data));
 
-        if (isset($data['name']) && isset($data['type_id'])) {
-            $name = $data['name'];
-            $type_id = $data['type_id'];
+        if (isset($data['product_name']) && isset($data['product_type_id']) && isset($data['product_value'])) {
+            $product_name = $data['product_name'];
+            $product_type_id = $data['product_type_id'];
+            $product_value = $data['product_value'];
 
             $productModel = new Product();
-            $result = $productModel->create($name, $type_id);
+            $result = $productModel->create($product_name, $product_type_id, $product_value);
 
             if ($result) {
                 echo json_encode(['success' => true]);
