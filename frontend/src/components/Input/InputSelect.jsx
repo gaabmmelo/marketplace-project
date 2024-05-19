@@ -1,4 +1,4 @@
-import { MenuItem, Select } from "@mui/material";
+import { Select } from "@mui/material";
 import React from "react";
 
 export default function InputSelect({
