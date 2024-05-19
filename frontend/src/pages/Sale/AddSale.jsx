@@ -46,30 +46,43 @@ export function AddSale() {
   };
 
   const handleAddProduct = () => {
-    console.log(sale);
-
     const selectedProduct = products.find(
       (product) => product.id === productSelected
     );
 
+    const parsedProductQuantity = parseFloat(sale.product_quantity);
+    const parsedProductValue = parseFloat(selectedProduct?.product_value);
+    const parsedTaxPercentage = parseFloat(productType?.tax_percentage);
+
     const multiValueQuantity = (
-      sale.product_quantity * selectedProduct?.product_value
+      parsedProductQuantity * parsedProductValue
     ).toFixed(2);
-    const multiValueQuantityFormatted = formatCurrency(multiValueQuantity);
+
+    const multiValueQuantityTax = (
+      parsedProductQuantity * parsedTaxPercentage
+    ).toFixed(2);
+
+    const totalPurchaseItem = (
+      parseFloat(multiValueQuantity) + parseFloat(multiValueQuantityTax)
+    ).toFixed(2);
 
     const newProduct = {
       id: Date.now(),
       product_id: productSelected,
       product_name: selectedProduct?.product_name ?? "",
-      product_value: formatCurrency(selectedProduct?.product_value),
+      product_value: selectedProduct?.product_value,
       product_type_id: productTypeId,
       product_type: productType?.product_type,
-      //product_type_tax: productType?.tax_percentage,
+      product_type_tax: productType?.tax_percentage,
       product_quantity: sale.product_quantity,
       total_purchase: sale.total_purchase,
       total_tax: sale.total_tax,
-      multi_value_quantity: multiValueQuantityFormatted,
+      multi_value_quantity: multiValueQuantity,
+      multi_value_quantity_tax: multiValueQuantityTax,
+      total_purchase_item: totalPurchaseItem,
     };
+
+    console.log(newProduct);
 
     setSoldProducts([...soldProducts, newProduct]);
 

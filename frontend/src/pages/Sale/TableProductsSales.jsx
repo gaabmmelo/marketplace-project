@@ -12,6 +12,10 @@ const headCells = [
     label: "Tipo de produto",
   },
   {
+    id: "product_type_tax",
+    label: "Valor imposto",
+  },
+  {
     id: "product_quantity",
     label: "Quantidade",
   },
@@ -21,11 +25,15 @@ const headCells = [
   },
   {
     id: "total_purchase",
-    label: "Valor item multiplicado por quantidade",
+    label: "Valor item x quantidade",
   },
   {
     id: "total_tax",
-    label: "Total do valor dos impostos",
+    label: "Item x imposto",
+  },
+  {
+    id: "total_purchase_item",
+    label: "Valor total",
   },
   {
     disableSorting: true,
