@@ -1,16 +1,11 @@
 import "./index.scss";
-import {
-  Grid,
-  InputAdornment,
-  InputLabel,
-  Modal,
-  TextField,
-} from "@mui/material";
+import { Grid, InputAdornment, Modal, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { ButtonStyled } from "components/Button/Button";
 import { ModalTitle } from "./ModalTitle";
 import axios from "axios";
 import { Label } from "components/Input/Label";
+import { InputRender } from "components/Input/InputRender";
 
 export function ModalAddProductType({ handleClose, open }) {
   const [productType, setProductType] = useState({
@@ -84,7 +79,7 @@ export function ModalAddProductType({ handleClose, open }) {
         <Grid item xs={12}>
           <Label htmlFor="product_type" label="Nome do tipo" />
 
-          <TextField
+          <InputRender
             fullWidth
             id="product_type"
             inputProps={{ "aria-label": "simple-tabpanel" }}
