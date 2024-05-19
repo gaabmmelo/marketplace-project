@@ -50,6 +50,7 @@ export function AddProduct() {
           product_name: "",
           product_value: "",
         });
+        setProductTypeId("");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -88,8 +89,9 @@ export function AddProduct() {
                   <Grid item xs={6}>
                     <Label label="Nome do produto" />
                     <InputRender
+                      id="product_name"
                       placeholder="Informe o nome do produto"
-                      value={product.productName}
+                      value={product.product_name}
                       onChange={(evt) =>
                         handleChange("product_name", evt.target.value)
                       }
@@ -98,8 +100,9 @@ export function AddProduct() {
                   <Grid item xs={6}>
                     <Label label="Valor do produto" />
                     <InputRender
+                      id="product_value"
                       placeholder="Informe o nome do produto"
-                      value={product.productValue}
+                      value={product.product_value}
                       onChange={(evt) =>
                         handleChange("product_value", evt.target.value)
                       }
