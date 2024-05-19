@@ -3,11 +3,31 @@
 namespace App\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductType;
 
 class ProductController {
-    public function index() {
+    /*public function index() {
         $productModel = new Product();
         echo json_encode($productModel->all());
+    }*/
+
+    public function index() {
+        $productModel = new Product();
+        $products = $productModel->all();
+    
+        $productTypeModel = new ProductType();
+        $productTypes = $productTypeModel->all();
+    
+        $productTypeMap = [];
+        foreach ($productTypes as $productType) {
+            $productTypeMap[$productType['id']] = $productType['product_type'];
+        }
+    
+        foreach ($products as &$product) {
+            $product['product_type'] = $productTypeMap[$product['product_type_id']];
+        }
+    
+        echo json_encode($products);
     }
 
     public function show($id) {
