@@ -7,7 +7,6 @@ import NoRecordsFound from "./NoRecordsFound";
 
 export function TblPrimary({ children, hasPagination, loading, table, sx }) {
   const hasRecords = table?.records && table.records.length > 0;
-  console.log(hasRecords);
   const hasHeadCells = table?.headCells && table.headCells.length > 0;
 
   return (
