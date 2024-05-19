@@ -77,7 +77,6 @@ export function Home() {
                   marginRight: 4,
                   marginBottom: 3,
                   justifyContent: "center",
-                  width: "38%",
                 }}
                 severity="info"
               >

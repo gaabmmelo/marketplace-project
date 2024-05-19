@@ -12,7 +12,7 @@ export function GroupedCards({ handleOpenModal }) {
   const redirectPage = (url) => navigate(url);
 
   return (
-    <Grid container gap={3} item justifyContent="end" md={7} xs={12}>
+    <Grid container gap={3} item justifyContent="end" md={10} xs={12}>
       <CardFunctionality
         description="Adicione um novo produto!"
         redirectPage={() => redirectPage("/add_produto")}
