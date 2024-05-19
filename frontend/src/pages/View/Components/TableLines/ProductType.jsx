@@ -1,10 +1,9 @@
 import { TableCell, TableRow } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import React from "react";
 import Icon from "components/Icon";
 
-export function ProductLine({
+export function ProductType({
   item,
   edicao,
   exclusao,
@@ -13,11 +12,11 @@ export function ProductLine({
 }) {
   return (
     <TableRow>
-      <TableCell>#000{item.id}</TableCell>
+      <TableCell>#T00{item.id}</TableCell>
 
-      <TableCell>{item.product_name}</TableCell>
+      <TableCell>{item.product_type}</TableCell>
 
-      <TableCell>{item.product_type_id}</TableCell>
+      <TableCell>{item.tax_percentage}</TableCell>
 
       <TableCell>
         <Icon

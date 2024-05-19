@@ -4,7 +4,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import React from "react";
 import Icon from "components/Icon";
 
-export function ProductLine({
+export function ProductSalesLine({
   item,
   edicao,
   exclusao,
@@ -13,11 +13,17 @@ export function ProductLine({
 }) {
   return (
     <TableRow>
-      <TableCell>#000{item.id}</TableCell>
+      <TableCell>#V000{item.id}</TableCell>
 
-      <TableCell>{item.product_name}</TableCell>
+      <TableCell>{item.product_id}</TableCell>
 
       <TableCell>{item.product_type_id}</TableCell>
+
+      <TableCell>{item.product_quantity}</TableCell>
+
+      <TableCell>{item.total_purchase}</TableCell>
+
+      <TableCell>{item.total_tax}</TableCell>
 
       <TableCell>
         <Icon

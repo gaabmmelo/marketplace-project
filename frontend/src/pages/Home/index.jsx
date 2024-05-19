@@ -5,6 +5,7 @@ import styles from "./index.module.scss";
 import MenuAppBar from "../../components/MenuAppBar/MenuAppBar";
 import TabsRender from "components/Tabs/TabsRender";
 import { ViewTableProduct } from "pages/View/ViewTableProduct";
+import { ViewTableProductType } from "pages/View/ViewTableProductType";
 
 export function Home() {
   const [valueTab, setValueTab] = useState(0);
@@ -36,7 +37,7 @@ export function Home() {
       case 0:
         return <ViewTableProduct />;
       case 1:
-        return "teste 2";
+        return <ViewTableProductType />;
       case 2:
         return "teste 3";
       default:
@@ -52,7 +53,7 @@ export function Home() {
 
       <Grid container className={styles.homeTable}>
         <Grid item md={12} xs={12}>
-          <Paper pb={5} sx={{ borderRadius: "20px" }}>
+          <Paper sx={{ borderRadius: "20px", pb: "50px" }}>
             <Typography
               variant="h5"
               gutterBottom

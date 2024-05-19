@@ -1,7 +1,7 @@
 import { TblPrimary, useTable } from "components/TableServerSide";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { ProductLine } from "./Components/TableLines/ProductLine";
+import { ProductType } from "./Components/TableLines/ProductType";
 
 const headCells = [
   {
@@ -9,12 +9,12 @@ const headCells = [
     label: "Identificador",
   },
   {
-    id: "product_name",
-    label: "Nome do produto",
+    id: "product_type",
+    label: "Tipo do produto",
   },
   {
-    id: "product_type_id",
-    label: "Tipo de produto",
+    id: "tax_percentage",
+    label: "Imposto",
   },
   {
     disableSorting: true,
@@ -28,7 +28,7 @@ const headCells = [
   },
 ];
 
-export function ViewTableProduct() {
+export function ViewTableProductType() {
   const [products, setProducts] = useState([]);
 
   const table = useTable(products ?? [], headCells, products.length ?? 0);
@@ -36,7 +36,7 @@ export function ViewTableProduct() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/product", {
+        const response = await axios.get("http://localhost:8080/product_type", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -53,7 +53,7 @@ export function ViewTableProduct() {
   return (
     <TblPrimary hasPagination table={table}>
       {table?.recordsAfterPagingAndSorting()?.map((product) => (
-        <ProductLine
+        <ProductType
           //callbackExcluir={deletar}
           //handleEdicao={() => handleEdicao(product)}
           item={product}
