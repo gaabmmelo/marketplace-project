@@ -15,7 +15,7 @@ export function ProductLine({ item, handleEdicao, callbackExcluir }) {
       <TableCell>{item.product_name}</TableCell>
 
       <TableCell>
-        #TP{item.product_type_id} - {item.product_type}
+        {/*#TP{item.product_type_id} - {item.product_type}*/}
       </TableCell>
 
       <TableCell>R$ {formatCurrency(item.product_value)} </TableCell>

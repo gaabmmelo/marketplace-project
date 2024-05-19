@@ -4,10 +4,6 @@ import { TableLineProductsSales } from "./TableLineProductsSales";
 
 const headCells = [
   {
-    id: "id",
-    label: "Identificador",
-  },
-  {
     id: "product_name",
     label: "Produto",
   },
@@ -17,11 +13,15 @@ const headCells = [
   },
   {
     id: "product_quantity",
-    label: "Quantidade de produtos",
+    label: "Quantidade",
+  },
+  {
+    id: "product_value",
+    label: "Valor do produto",
   },
   {
     id: "total_purchase",
-    label: "Total valor da soma dos produtos",
+    label: "Valor item multiplicado por quantidade",
   },
   {
     id: "total_tax",

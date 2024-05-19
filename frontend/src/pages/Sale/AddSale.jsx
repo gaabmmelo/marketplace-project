@@ -47,20 +47,28 @@ export function AddSale() {
 
   const handleAddProduct = () => {
     console.log(sale);
+
     const selectedProduct = products.find(
       (product) => product.id === productSelected
     );
+
+    const multiValueQuantity = (
+      sale.product_quantity * selectedProduct?.product_value
+    ).toFixed(2);
+    const multiValueQuantityFormatted = formatCurrency(multiValueQuantity);
 
     const newProduct = {
       id: Date.now(),
       product_id: productSelected,
       product_name: selectedProduct?.product_name ?? "",
-      product_value: selectedProduct?.product_value,
+      product_value: formatCurrency(selectedProduct?.product_value),
       product_type_id: productTypeId,
       product_type: productType?.product_type,
+      //product_type_tax: productType?.tax_percentage,
       product_quantity: sale.product_quantity,
       total_purchase: sale.total_purchase,
       total_tax: sale.total_tax,
+      multi_value_quantity: multiValueQuantityFormatted,
     };
 
     setSoldProducts([...soldProducts, newProduct]);
@@ -165,7 +173,11 @@ export function AddSale() {
                             handleChange("product_quantity", evt.target.value)
                           }
                           type={"number"}
-                          value={sale.product_quantity || ""}
+                          value={
+                            sale.product_quantity >= 0
+                              ? sale.product_quantity
+                              : ""
+                          }
                         />
                       </Grid>
                     </>
@@ -180,20 +192,14 @@ export function AddSale() {
                     title={"Adicionar Produto"}
                   />
                 </Grid>
-              </Box>
 
-              <Grid
-                container
-                mt={4}
-                alignItems={"flex-end"}
-                justifyContent={"center"}
-              >
-                {/* O sistema deve apresentar o valor de cada item multiplicado pela quantidade adquirida;
-                - quantidade pago de imposto em cada item
-
-                - um totalizador do valor da compra
-                - um totalizador do valor dos impostos;*/}
-                <Grid item xs={12} sm={10} md={10} mb={8}>
+                <Grid
+                  item
+                  mb={8}
+                  mt={5}
+                  alignItems={"flex-end"}
+                  justifyContent={"center"}
+                >
                   <Paper>
                     <TableProductsSales
                       handleRemoveProduct={handleRemoveProduct}
@@ -201,7 +207,13 @@ export function AddSale() {
                     />
                   </Paper>
                 </Grid>
-              </Grid>
+              </Box>
+
+              {/* o valor de cada item multiplicado pela quantidade adquirida;
+                - quantidade pago de imposto em cada item
+
+                - um totalizador do valor da compra
+                - um totalizador do valor dos impostos;*/}
             </Paper>
           </Grid>
         </Grid>

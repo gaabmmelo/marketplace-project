@@ -1,6 +1,7 @@
 import { TableCell, TableRow } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import React, { useEffect } from "react";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import React from "react";
 import Icon from "components/Icon";
 import { ButtonStyled } from "components/Button/Button";
 
@@ -11,17 +12,17 @@ export function TableLineProductsSales({
 }) {
   return (
     <TableRow>
-      <TableCell>{item.product_id}</TableCell>
+      <TableCell>{item.product_name}</TableCell>
 
       <TableCell>
-        {item.product_type_id} - {item.product_name}
+        {item.product_type_id} - {item.product_type}
       </TableCell>
-
-      <TableCell>{item.product_type}</TableCell>
 
       <TableCell>{item.product_quantity}</TableCell>
 
-      <TableCell>{item.total_purchase}</TableCell>
+      <TableCell>{item.product_value}</TableCell>
+
+      <TableCell>R$ {item.multi_value_quantity}</TableCell>
 
       <TableCell>{item.total_tax}</TableCell>
 
@@ -34,11 +35,10 @@ export function TableLineProductsSales({
       </TableCell>
 
       <TableCell>
-        <ButtonStyled
-          handler={() => handleRemoveProduct(item.id)}
-          variant="contained"
-          color="secondary"
-          title={"Remover"}
+        <Icon
+          callback={() => handleRemoveProduct(item.id)}
+          icon={<DeleteOutlineIcon />}
+          tooltip="Editar"
         />
       </TableCell>
     </TableRow>
