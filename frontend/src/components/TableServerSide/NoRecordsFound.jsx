@@ -1,12 +1,22 @@
-import { TblCell, TblRow } from "./index";
+import { TableCell, TableRow } from "@mui/material";
 import React from "react";
 
-export function NoRecordsFound({ colspan, message }) {
+export default function NoRecordsFound({ colSpan, message }) {
+  let countColunas = colSpan;
+
+  if (countColunas === 0) {
+    const table = document.querySelector("table");
+
+    if (table) {
+      countColunas = document.querySelectorAll("table tr th").length;
+    }
+  }
+
   return (
-    <TblRow>
-      <TblCell align="center" colSpan={colspan}>
-        {message}
-      </TblCell>
-    </TblRow>
+    <TableRow>
+      <TableCell colSpan={countColunas} sx={{ textAlign: "center" }}>
+        Nenhum registro encontrado.
+      </TableCell>
+    </TableRow>
   );
 }

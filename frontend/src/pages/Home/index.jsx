@@ -1,58 +1,48 @@
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { Header } from "./Components/Header";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./index.module.scss";
 import MenuAppBar from "../../components/MenuAppBar/MenuAppBar";
-import { TblPrimary, useTable } from "components/TableServerSide";
-import axios from "axios";
-import { ProductLine } from "./Components/ViewProducts/ProductLine";
-
-const headCells = [
-  {
-    id: "id",
-    label: "Identificador",
-  },
-  {
-    id: "product_name",
-    label: "Nome do produto",
-  },
-  {
-    id: "product_type_id",
-    label: "Tipo de produto",
-  },
-  {
-    disableSorting: true,
-    id: "editar",
-    label: "Editar",
-  },
-  {
-    disableSorting: true,
-    id: "excluir",
-    label: "Excluir",
-  },
-];
+import TabsRender from "components/Tabs/TabsRender";
+import { ViewTableProduct } from "pages/View/ViewTableProduct";
 
 export function Home() {
-  const [products, setProducts] = useState([]);
+  const [valueTab, setValueTab] = useState(0);
 
-  const table = useTable(products ?? [], headCells, products.length ?? 0);
+  const handleChange = (event, newValue) => {
+    setValueTab(newValue);
+  };
 
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/product", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
+  const tabsItems = [
+    {
+      ariaControls: "products",
+      id: 0,
+      label: "Produtos",
+    },
+    {
+      ariaControls: "types",
+      id: 1,
+      label: "Tipos de produto",
+    },
+    {
+      ariaControls: "sales",
+      id: 2,
+      label: "Vendas",
+    },
+  ];
 
-    getProducts();
-  }, []);
+  const returnTab = (indexTab) => {
+    switch (indexTab) {
+      case 0:
+        return <ViewTableProduct />;
+      case 1:
+        return "teste 2";
+      case 2:
+        return "teste 3";
+      default:
+        return "";
+    }
+  };
 
   return (
     <Box className={styles.home}>
@@ -61,18 +51,36 @@ export function Home() {
       <Header />
 
       <Grid container className={styles.homeTable}>
-        <Grid item md={8} xs={8}>
-          <Paper sx={{ borderRadius: "20px" }}>
-            <TblPrimary hasPagination table={table}>
-              {table?.recordsAfterPagingAndSorting()?.map((product) => (
-                <ProductLine
-                  // callbackExcluirPrototipoIdeia={deletarPrototipoIdeia}
-                  // handleEdicao={() => handleEdicao(prototipo)}
-                  item={product}
-                  key={product.id}
-                />
-              ))}
-            </TblPrimary>
+        <Grid item md={12} xs={12}>
+          <Paper pb={5} sx={{ borderRadius: "20px" }}>
+            <Typography
+              variant="h5"
+              gutterBottom
+              p={4}
+              sx={{ color: "#00A091", textAlign: "left", fontWeight: "600" }}
+            >
+              Visualização
+            </Typography>
+            <Paper
+              sx={{
+                border: "1px solid #e0e0e0",
+                borderRadius: "20px",
+                p: 1,
+                m: "0px 30px 0px 30px",
+              }}
+            >
+              <TabsRender
+                handleChange={handleChange}
+                orientation="horizontal"
+                sx={{ mt: 1 }}
+                tabsItems={tabsItems}
+                value={valueTab}
+              >
+                <Box sx={{ margin: "15px 10px 0 10px" }}>
+                  {returnTab(valueTab)}
+                </Box>
+              </TabsRender>
+            </Paper>
           </Paper>
         </Grid>
       </Grid>
