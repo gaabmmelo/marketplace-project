@@ -20,7 +20,10 @@ class ProductController {
     
         $productTypeMap = [];
         foreach ($productTypes as $productType) {
-            $productTypeMap[$productType['id']] = $productType['product_type'];
+            $productTypeMap[$productType['id']] = [
+                'product_type' => $productType['product_type'],
+                'tax_percentage' => $productType['tax_percentage']
+            ];
         }
     
         foreach ($products as &$product) {
