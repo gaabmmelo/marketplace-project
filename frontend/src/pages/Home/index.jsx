@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Alert, Box, Grid, Paper, Typography } from "@mui/material";
 import { Header } from "./Components/Header";
 import React, { useState } from "react";
 import styles from "./index.module.scss";
@@ -6,6 +6,7 @@ import MenuAppBar from "../../components/MenuAppBar/MenuAppBar";
 import TabsRender from "components/Tabs/TabsRender";
 import { ViewTableProduct } from "pages/View/ViewTableProduct";
 import { ViewTableProductType } from "pages/View/ViewTableProductType";
+import { ViewTableProductSale } from "pages/View/ViewTableProductSale";
 
 export function Home() {
   const [valueTab, setValueTab] = useState(0);
@@ -39,7 +40,7 @@ export function Home() {
       case 1:
         return <ViewTableProductType />;
       case 2:
-        return "teste 3";
+        return <ViewTableProductSale />;
       default:
         return "";
     }
@@ -57,11 +58,31 @@ export function Home() {
             <Typography
               variant="h5"
               gutterBottom
-              p={4}
+              pl={4}
+              pt={4}
+              pb={1}
+              pr={4}
               sx={{ color: "#00A091", textAlign: "left", fontWeight: "600" }}
             >
               Visualização
             </Typography>
+
+            <Alert
+              sx={{
+                borderRadius: "20px",
+                fontSize: "16px",
+                marginLeft: 4,
+                marginRight: 4,
+                marginBottom: 3,
+                justifyContent: "center",
+                width: "38%",
+              }}
+              severity="info"
+            >
+              Navegue entre as tabelas de produtos, tipos de produto e vendas
+              para realizar ações!
+            </Alert>
+
             <Paper
               sx={{
                 border: "1px solid #e0e0e0",
