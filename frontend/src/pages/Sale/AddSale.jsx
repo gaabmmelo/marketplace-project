@@ -17,6 +17,7 @@ export function AddSale() {
   const [productTypeId, setProductTypeId] = useState("");
   const [productType, setProductType] = useState("");
   const [productValue, setProductValue] = useState("");
+  const [productTax, setProductTax] = useState("");
 
   const [soldProducts, setSoldProducts] = useState([]);
   const [productSelected, setProductSelected] = useState("");
@@ -41,9 +42,10 @@ export function AddSale() {
       (product) => product.id === productId
     );
     setProductSelected(productId);
-    setProductType(selectedProduct?.product_type ?? "");
-    setProductTypeId(selectedProduct?.product_type_id ?? "");
     setProductValue(selectedProduct?.product_value ?? "");
+    setProductTypeId(selectedProduct?.product_type_id ?? "");
+    setProductType(selectedProduct?.product_type ?? "");
+    setProductTax(selectedProduct?.tax_percentage ?? "");
   };
 
   const handleAddProduct = () => {
@@ -53,7 +55,7 @@ export function AddSale() {
 
     const parsedProductQuantity = parseFloat(sale.product_quantity);
     const parsedProductValue = parseFloat(selectedProduct?.product_value);
-    const parsedTaxPercentage = parseFloat(productType?.tax_percentage);
+    const parsedTaxPercentage = parseFloat(selectedProduct?.tax_percentage);
 
     const multiValueQuantity = (
       parsedProductQuantity * parsedProductValue
@@ -72,9 +74,9 @@ export function AddSale() {
       product_id: productSelected,
       product_name: selectedProduct?.product_name ?? "",
       product_value: selectedProduct?.product_value,
-      product_type_id: productTypeId,
-      product_type: productType?.product_type,
-      product_type_tax: productType?.tax_percentage,
+      product_type_id: selectedProduct?.product_type_id,
+      product_type: selectedProduct?.product_type,
+      product_type_tax: selectedProduct?.tax_percentage,
       product_quantity: sale.product_quantity,
       total_purchase: sale.total_purchase,
       total_tax: sale.total_tax,
@@ -89,6 +91,7 @@ export function AddSale() {
     setProductType("");
     setProductTypeId("");
     setProductValue("");
+    setProductTax("");
     setSale({
       product_id: "",
       product_name: "",
@@ -183,16 +186,14 @@ export function AddSale() {
                         <Label label="Tipo do produto" />
                         <InputRender
                           disabled
-                          value={`#TP ${productTypeId} - ${productType?.product_type}`}
+                          value={`#TP ${productTypeId} - ${productType}`}
                         />
                       </Grid>
                       <Grid item xs={4}>
                         <Label label="Valor do imposto" />
                         <InputRender
                           disabled
-                          value={`R$ ${formatCurrency(
-                            productType?.tax_percentage
-                          )}`}
+                          value={`R$ ${formatCurrency(productTax)}`}
                         />
                       </Grid>
                     </>
@@ -231,6 +232,21 @@ export function AddSale() {
                       soldProducts={soldProducts}
                     />
                   </Paper>
+                </Grid>
+
+                <Grid
+                  container
+                  display={"flex"}
+                  justifyContent={"center"}
+                  mt={2}
+                >
+                  <ButtonStyled
+                    //handler={handleAddProduct}
+                    variant="contained"
+                    disabled={soldProducts.length <= 0}
+                    color="primary"
+                    title={"Realizar venda"}
+                  />
                 </Grid>
               </Box>
             </Paper>

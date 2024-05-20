@@ -53,7 +53,6 @@ export function AddProduct() {
         }
       )
       .then((response) => {
-        console.log(response.data);
         setProduct({
           product_name: "",
           product_value: "",
