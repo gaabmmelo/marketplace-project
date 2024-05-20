@@ -110,35 +110,58 @@ export function AddSale() {
   };
 
   const handleAddSale = async () => {
-    console.log(soldProducts);
     try {
-      axios
-        .post(
-          "http://localhost:8080/sales",
-          {
-            total_purchase: soldProducts
-              .reduce((total, product) => {
-                return total + parseFloat(product.total_purchase_item);
-              }, 0)
-              .toFixed(2),
-            total_tax: soldProducts.reduce((totalTax, product) => {
-              return totalTax + parseFloat(product.multi_value_quantity_tax);
-            }, 0),
+      const response = await axios.post(
+        "http://localhost:8080/sales",
+        {
+          total_purchase: soldProducts
+            .reduce((total, product) => {
+              return total + parseFloat(product.total_purchase_item);
+            }, 0)
+            .toFixed(2),
+          total_tax: soldProducts.reduce((totalTax, product) => {
+            return totalTax + parseFloat(product.multi_value_quantity_tax);
+          }, 0),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        }
+      );
+      console.log("Sale added successfully:", response.data);
+
+      await handleAddSaleProducts(response.data.id);
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error adding sale:", error);
+    }
+  };
+
+  const handleAddSaleProducts = async (saleId) => {
+    try {
+      await Promise.all(
+        soldProducts.map(async (product) => {
+          console.log(product);
+          await axios.post(
+            "http://localhost:8080/sales_product",
+            {
+              product_id: product.product_id,
+              id_sale: saleId,
+              product_quantity: product.product_quantity,
+              product_value: product.product_value,
+              tax_percentage: product.product_type_tax,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+        })
+      );
+      console.log("All products added to sales_product successfully");
+    } catch (error) {
+      console.error("Error adding products to sales_product:", error);
     }
   };
 
