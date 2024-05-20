@@ -8,7 +8,12 @@ import MenuAppBar from "components/MenuAppBar/MenuAppBar";
 import { TableProductsSales } from "./TableProductsSales";
 import InputSelect from "components/Input/InputSelect";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
-import { ChipTotal } from "./Components/ChipTotal";
+import {
+  ChipTotal,
+  getTotalProducts,
+  getTotalPurchase,
+  getTotalTax,
+} from "./Components/ChipTotal";
 
 export function AddSale() {
   const { formatCurrency } = useFormatCurrency();
@@ -107,6 +112,39 @@ export function AddSale() {
       (product) => product.id !== productId
     );
     setSoldProducts(updatedProducts);
+  };
+
+  const handleAddSale = async () => {
+    console.log(soldProducts);
+    try {
+      axios
+        .post(
+          "http://localhost:8080/sales",
+          {
+            total_purchase: soldProducts
+              .reduce((total, product) => {
+                return total + parseFloat(product.total_purchase_item);
+              }, 0)
+              .toFixed(2),
+            total_tax: soldProducts.reduce((totalTax, product) => {
+              return totalTax + parseFloat(product.multi_value_quantity_tax);
+            }, 0),
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
 
   useEffect(() => {
@@ -241,7 +279,7 @@ export function AddSale() {
                   mt={2}
                 >
                   <ButtonStyled
-                    //handler={handleAddProduct}
+                    handler={handleAddSale}
                     variant="contained"
                     disabled={soldProducts.length <= 0}
                     color="primary"
