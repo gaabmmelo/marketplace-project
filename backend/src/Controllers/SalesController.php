@@ -49,10 +49,10 @@ class SalesController {
             $id_sale = $data['id_sale'];
             $product_quantity = $data['product_quantity'];
             $product_value = $data['product_value'];
-            $total_percentage = $data['tax_percentage'];
+            $tax_percentage = $data['tax_percentage'];
 
             $saleModel = new Sale();
-            $result = $saleModel->createSaleProduct($product_id, $id_sale, $product_quantity, $product_value, $tax_percentage);
+            $result = $saleModel->createSalesProducts($product_id, $id_sale, $product_quantity, $product_value, $tax_percentage);
 
             if ($result) {
                 echo json_encode(['success' => true, 'id' => $result]);
