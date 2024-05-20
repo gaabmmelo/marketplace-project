@@ -66,7 +66,7 @@ export function AddProduct() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/product_type")
+      .get("http://localhost:8080/products_type")
       .then((response) => {
         setProductTypes(response.data);
       })

@@ -29,7 +29,7 @@ export function ModalAddProductType({ handleClose, open }) {
 
       axios
         .post(
-          "http://localhost:8080/product_type",
+          "http://localhost:8080/products_type",
           {
             ...productType,
             tax_percentage: formattedValue,
