@@ -5,7 +5,7 @@ namespace App\Models;
 class Database {
 	var $user     = "postgres";
 	var $pass     = "123456";
-    var $dsn = "pgsql:host=localhost;port=5432;dbname=projeto-vendas-softexpert;";
+    var $dsn = "pgsql:host=localhost;port=5432;dbname=project-sales-softexpert;";
 
 	public $link = null;
 
