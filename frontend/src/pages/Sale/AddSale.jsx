@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Chip, Grid, MenuItem, Paper, Typography } from "@mui/material";
+import { Box, Grid, MenuItem, Paper, Typography } from "@mui/material";
 import axios from "axios";
 import { ButtonStyled } from "components/Button/Button";
 import { InputRender } from "components/Input/InputRender";
@@ -8,12 +8,7 @@ import MenuAppBar from "components/MenuAppBar/MenuAppBar";
 import { TableProductsSales } from "./TableProductsSales";
 import InputSelect from "components/Input/InputSelect";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
-import {
-  ChipTotal,
-  getTotalProducts,
-  getTotalPurchase,
-  getTotalTax,
-} from "./Components/ChipTotal";
+import { ChipTotal } from "./Components/ChipTotal";
 
 export function AddSale() {
   const { formatCurrency } = useFormatCurrency();
@@ -276,7 +271,7 @@ export function AddSale() {
                   container
                   display={"flex"}
                   justifyContent={"center"}
-                  mt={2}
+                  mt={1}
                 >
                   <ButtonStyled
                     handler={handleAddSale}

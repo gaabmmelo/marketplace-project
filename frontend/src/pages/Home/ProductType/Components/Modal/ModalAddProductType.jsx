@@ -1,5 +1,5 @@
 import "./index.scss";
-import { Grid, InputAdornment, Modal, TextField } from "@mui/material";
+import { Grid, InputAdornment, Modal } from "@mui/material";
 import React, { useState } from "react";
 import { ButtonStyled } from "components/Button/Button";
 import { ModalTitle } from "./ModalTitle";
@@ -60,7 +60,7 @@ export function ModalAddProductType({ handleClose, open }) {
       <Grid className="modal" container padding={3}>
         <ModalTitle title="Novo tipo de produto" />
 
-        <Grid item xs={12}>
+        <Grid item xs={12} mt={2}>
           <Label htmlFor="product_type" label="Nome do tipo" />
 
           <InputRender

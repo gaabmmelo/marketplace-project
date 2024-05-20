@@ -58,6 +58,7 @@ export function ChipTotal({ soldProducts }) {
           backgroundColor: "#005768eb",
           color: "#fff",
           mt: 5,
+          ml: 2,
           mb: 5,
         }}
         label={`Total valor da compra: R$ ${formatCurrency(
