@@ -19,6 +19,7 @@ export function ButtonStyled({
       size={size}
       sx={{
         fontSize: "18px",
+        border: "1px solid transparent",
         textTransform: "initial",
         marginTop: "20px",
         marginLeft: "20px",

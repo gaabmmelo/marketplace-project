@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Grid, Input, MenuItem, Paper, Typography } from "@mui/material";
+import { Box, Chip, Grid, MenuItem, Paper, Typography } from "@mui/material";
 import axios from "axios";
 import { ButtonStyled } from "components/Button/Button";
 import { InputRender } from "components/Input/InputRender";
@@ -8,6 +8,7 @@ import MenuAppBar from "components/MenuAppBar/MenuAppBar";
 import { TableProductsSales } from "./TableProductsSales";
 import InputSelect from "components/Input/InputSelect";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
+import { ChipTotal } from "./Components/ChipTotal";
 
 export function AddSale() {
   const { formatCurrency } = useFormatCurrency();
@@ -82,10 +83,12 @@ export function AddSale() {
       total_purchase_item: totalPurchaseItem,
     };
 
-    console.log(newProduct);
-
     setSoldProducts([...soldProducts, newProduct]);
 
+    setProductSelected("");
+    setProductType("");
+    setProductTypeId("");
+    setProductValue("");
     setSale({
       product_id: "",
       product_name: "",
@@ -132,7 +135,7 @@ export function AddSale() {
                 </Typography>
 
                 <Grid container spacing={2} alignItems={"flex-end"}>
-                  <Grid item xs={12}>
+                  <Grid item xs={8}>
                     <Label label="Produto" />
                     <InputSelect
                       onChange={(e) => handleProductSelect(e.target.value)}
@@ -147,6 +150,22 @@ export function AddSale() {
                         </MenuItem>
                       ))}
                     </InputSelect>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Label label="Quantidade do produto desejada" />
+
+                    <InputRender
+                      id="product_quantity"
+                      inputProps={{ "aria-label": "simple-tabpanel" }}
+                      onChange={(evt) =>
+                        handleChange("product_quantity", evt.target.value)
+                      }
+                      placeholder={"Informe a quantidade desejada"}
+                      type={"number"}
+                      value={
+                        sale.product_quantity >= 0 ? sale.product_quantity : ""
+                      }
+                    />
                   </Grid>
                 </Grid>
 
@@ -176,44 +195,37 @@ export function AddSale() {
                           )}`}
                         />
                       </Grid>
-                      <Grid item xs={3}>
-                        <Label label="Quantidade do produto desejada" />
-
-                        <InputRender
-                          id="product_quantity"
-                          inputProps={{ "aria-label": "simple-tabpanel" }}
-                          onChange={(evt) =>
-                            handleChange("product_quantity", evt.target.value)
-                          }
-                          type={"number"}
-                          value={
-                            sale.product_quantity >= 0
-                              ? sale.product_quantity
-                              : ""
-                          }
-                        />
-                      </Grid>
                     </>
                   ) : null}
                 </Grid>
 
-                <Grid container mt={4}>
+                <Grid
+                  container
+                  display={"flex"}
+                  justifyContent={"flex-end"}
+                  mt={2}
+                >
                   <ButtonStyled
                     handler={handleAddProduct}
                     variant="contained"
+                    disabled={
+                      productSelected === "" || sale.product_quantity === ""
+                    }
                     color="primary"
-                    title={"Adicionar Produto"}
+                    title={"Adicionar produto"}
                   />
                 </Grid>
 
                 <Grid
-                  item
+                  container
                   mb={8}
                   mt={5}
-                  alignItems={"flex-end"}
+                  alignItems={"center"}
                   justifyContent={"center"}
                 >
-                  <Paper>
+                  <Paper sx={{ border: "1px solid #d9d8d8", padding: 4 }}>
+                    <ChipTotal soldProducts={soldProducts} />
+
                     <TableProductsSales
                       handleRemoveProduct={handleRemoveProduct}
                       soldProducts={soldProducts}
@@ -221,12 +233,6 @@ export function AddSale() {
                   </Paper>
                 </Grid>
               </Box>
-
-              {/* o valor de cada item multiplicado pela quantidade adquirida;
-                - quantidade pago de imposto em cada item
-
-                - um totalizador do valor da compra
-                - um totalizador do valor dos impostos;*/}
             </Paper>
           </Grid>
         </Grid>
