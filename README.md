@@ -4,8 +4,8 @@ Desenvolvimento de um sistema para mercado que permite cadastrar os produtos e t
 A tela de venda exibirá produtos, quantidades, valor total, e total de impostos e salvando cada venda realizada.
 
 ## Funcionalidades
-> 1. Página inicial do projeto que exibe as opções disponíveis: cadastrar tipo, cadastrar produto e cadastrar venda;
-> 2. Lista dos tipos de produto cadastrado, produtos cadastrados e vendas realizadas;
+1. Página inicial do projeto que exibe as opções disponíveis: cadastrar tipo, cadastrar produto e cadastrar venda;
+2. Lista dos tipos de produto cadastrado, produtos cadastrados e vendas realizadas;
 
 ## Ajustes e melhorias
 
