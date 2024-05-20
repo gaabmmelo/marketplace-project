@@ -13,6 +13,12 @@ A tela de venda exibirá produtos, quantidades, valor total, e total de impostos
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [ ] Tratamento dos erros no front-end;
+- [ ] Implementação de mensagens de sucesso de cadastro do tipo de produto, produto e vendas;
+- [ ] Implementação de mensagens de erro de cadastro do tipo de produto, produto e vendas;
+- [ ] Implementação de testes unitários utilizando o PHPUnit 11.1.3;
+- [ ] Atualização de alguns estados no front-end para atualização depois que adicionado um tipo de produto;
+- [ ] Revisão de alguns códigos do back-end;
+- [ ] Adição de tipos de impostos no tipo de produto (ISS, FIS...);
 
 # 💻 Pré-requisitos
 
@@ -20,7 +26,6 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - php-mysqli;
 - Composer;
 - PostgresSQL;
-- PHPUnit 11.1.3;
 
 # Instalando <marketplace-project>
 
