@@ -20,13 +20,13 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - php-mysqli;
 - Composer;
 - PostgresSQL;
-- bramus/router;
+- PHPUnit 11.1.3;
 
 # Instalando <marketplace-project>
 
 1.  Clone o repositório e entre na pasta;
 2.  Instale as dependência do projeto com o comando `composer install`;
-3.  Crie um banco de dados chamado "tal";
+3.  Crie um banco de dados chamado "sales-softexpert";
 4.  Execute o backup do banco de dados com o arquivo bd.backup encontrado na raiz do projeto;
 5.  Após as configurações do banco de dados, inicie o servidor do PHP com o comando `php -S localhost:8080` dentro da pasta de backend;
 6.  Para rodar o front-end, execute o comando `npm start` dentro da pasta frontend;
