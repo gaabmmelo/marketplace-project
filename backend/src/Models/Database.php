@@ -20,7 +20,7 @@ class Database {
 
     public function fetchAll($query) {
         $stmt = $this->link->query($query);
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function fetch($query) {

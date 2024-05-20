@@ -14,11 +14,11 @@ $router->get('/product/{id}', '\App\Controllers\ProductController@show');
 $router->post('/product', '\App\Controllers\ProductController@create');
 
 /*TIPO DE PRODUTO*/
-$router->get('/product_type', '\App\Controllers\ProductTypeController@index');
-$router->get('/product_type/{id}', '\App\Controllers\ProductTypeController@show');
-$router->post('/product_type', '\App\Controllers\ProductTypeController@create');
-$router->put('/product_type/{id}', 'ProductTypeController@update');
-$router->delete('/product_type/{id}', 'ProductTypeController@delete');
+$router->get('/products_type', '\App\Controllers\ProductTypeController@index');
+$router->get('/products_type/{id}', '\App\Controllers\ProductTypeController@show');
+$router->post('/products_type', '\App\Controllers\ProductTypeController@create');
+$router->put('/products_type/{id}', 'ProductTypeController@update');
+$router->delete('/products_type/{id}', 'ProductTypeController@delete');
 
 /*VENDAS*/
 $router->get('/sales', '\App\Controllers\SalesController@index');

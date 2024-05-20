@@ -32,4 +32,61 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 6.  Para rodar o front-end, execute o comando `npm start` dentro da pasta frontend;
 7.  O projeto web estará disponível em `http://localhost:8000`;
 
-# Testes
+# Endpoints
+
+`GET /products`
+
+```json
+[
+  {
+    "id": "Id do produto cadastrado",
+    "product_name": "Nome do produto cadastrado",
+    "product_type": "Tipo do produto",
+    "product_type_id": "Id do tipo de produto",
+    "product_value": "Valor do produto",
+    "tax_percentage": "Valor do imposto do tipo do produto",
+    "created_at": "Data de cadastro"
+  }
+]
+```
+
+`GET /product_type`
+
+```json
+[
+  {
+    "id": "Id do tipo de produto cadastrado",
+    "product_type": "Nome do tipo do produto",
+    "tax_percentage": "Valor do imposto do tipo do produto",
+    "created_at": "Data de cadastro do tipo do produto"
+  }
+]
+```
+
+`GET /sales`
+
+```json
+[
+  {
+    "id": "Id da venda cadastrada",
+    "total_purchase": "Valor total da venda",
+    "total_tax": "Valor total do imposto sobre a venda",
+    "created_at": "Data da venda"
+  }
+]
+```
+
+`GET /sales_product`
+
+```json
+[
+  {
+    "id": "Id do registro do produto vendido",
+    "product_id": "Id do produto vendido",
+    "id_sale": "Id da venda realizada",
+    "product_quantity": "Quantidade do produto vendido",
+    "product_value": "Valor do produto vendido",
+    "tax_percentage": "Valor do imposto sobre o produto vendido"
+  }
+]
+```
