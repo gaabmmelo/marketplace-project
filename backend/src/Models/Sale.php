@@ -14,6 +14,15 @@ class Sale {
         return $conn->fetchAll($query);
     }
 
+    public function getSaleById($saleId) {
+        $conn = new Database();
+        $conn->connect();
+    
+        $query = "SELECT * FROM sales WHERE id = $saleId";
+    
+        return $conn->fetch($query);
+    }
+
     public function createSales($total_purchase, $total_tax) {
         $conn = new Database();
         $conn->connect();

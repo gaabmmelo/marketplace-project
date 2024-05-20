@@ -6,8 +6,8 @@ use App\Models\Sale;
 
 class SalesController {
     public function index() {
-        $productModel = new Product();
-        echo json_encode($productModel->all());
+        $saleModel = new Sale();
+        echo json_encode($saleModel->all());
     }
 
     public function show($product_id) {
