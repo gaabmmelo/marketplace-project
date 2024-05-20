@@ -10,7 +10,7 @@ A tela de venda exibirá produtos, quantidades, valor total, e total de impostos
 
 # Ajustes e melhorias
 
-Com base no tempo, gostaria de ter desenvolvindo estes ajustes e melhorias:
+Com base no tempo do desafio, gostaria de ter desenvolvindo estes ajustes e melhorias:
 
 - [ ] Tratamento dos erros no front-end;
 - [ ] Implementação de mensagens de sucesso de cadastro do tipo de produto, produto e vendas;
