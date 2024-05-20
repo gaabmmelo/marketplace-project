@@ -11,7 +11,7 @@ A tela de venda exibirá produtos, quantidades, valor total, e total de impostos
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [x] Tarefa 1
+- [ ] Tratamento dos erros no front-end;
 
 ## 💻 Pré-requisitos
 
