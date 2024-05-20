@@ -21,11 +21,6 @@ const headCells = [
     id: "editar",
     label: "Editar",
   },
-  {
-    disableSorting: true,
-    id: "excluir",
-    label: "Excluir",
-  },
 ];
 
 export function ViewTableProductType() {
@@ -57,8 +52,7 @@ export function ViewTableProductType() {
     <TblPrimary hasPagination table={table}>
       {table?.recordsAfterPagingAndSorting()?.map((product) => (
         <ProductType
-          //callbackExcluir={deletar}
-          //handleEdicao={() => handleEdicao(product)}
+          //handleEdit={() => handleEdit(product)}
           item={product}
           key={product.id}
         />

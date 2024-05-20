@@ -4,7 +4,7 @@ import React from "react";
 import Icon from "components/Icon";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
 
-export function ProductLine({ item, handleEdicao, callbackExcluir }) {
+export function ProductLine({ item, handleEdit }) {
   const { formatCurrency } = useFormatCurrency();
   return (
     <TableRow>
@@ -22,16 +22,10 @@ export function ProductLine({ item, handleEdicao, callbackExcluir }) {
 
       <TableCell>
         <Icon
-          //callback={() => handleEdicao(item)}
+          //callback={() => handleEdit(item)}
           icon={<EditOutlinedIcon />}
           tooltip="Editar"
         />
-      </TableCell>
-
-      <TableCell>
-        {/*<Excluir
-          callback={() => callbackExcluir(item.id)}
-          />*/}
       </TableCell>
     </TableRow>
   );

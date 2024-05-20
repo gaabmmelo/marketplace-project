@@ -58,8 +58,7 @@ export function ViewTableProduct() {
     <TblPrimary hasPagination table={table}>
       {table?.recordsAfterPagingAndSorting()?.map((product) => (
         <ProductLine
-          //callbackExcluir={deletar}
-          //handleEdicao={() => handleEdicao(product)}
+          //handleEdit={() => handleEdit(product)}
           item={product}
           key={product.id}
         />

@@ -15,10 +15,6 @@ export function ProductSaleLine({ item }) {
       <TableCell>R$ {formatCurrency(item.total_purchase)}</TableCell>
 
       <TableCell>R$ {formatCurrency(item.total_tax)}</TableCell>
-
-      <TableCell>
-        R$ {parseFloat(item.total_purchase + item.total_tax)}{" "}
-      </TableCell>
     </TableRow>
   );
 }
