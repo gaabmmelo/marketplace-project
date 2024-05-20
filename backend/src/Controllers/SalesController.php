@@ -23,7 +23,7 @@ class SalesController {
             $total_tax = $data['total_tax'];
 
             $saleModel = new Sale();
-            $result = $saleModel->create($total_purchase, $total_tax);
+            $result = $saleModel->createSales($total_purchase, $total_tax);
 
             if ($result) {
                 echo json_encode(['success' => true, 'id' => $result]);
@@ -45,16 +45,19 @@ class SalesController {
         && isset($data['product_value'])
         && isset($data['tax_percentage'])
         ) {
-            $total_purchase = $data['total_purchase'];
-            $total_tax = $data['total_tax'];
+            $product_id = $data['product_id'];
+            $id_sale = $data['id_sale'];
+            $product_quantity = $data['product_quantity'];
+            $product_value = $data['product_value'];
+            $total_percentage = $data['tax_percentage'];
 
             $saleModel = new Sale();
-            $result = $saleModel->create($total_purchase, $total_tax);
+            $result = $saleModel->createSaleProduct($product_id, $id_sale, $product_quantity, $product_value, $tax_percentage);
 
             if ($result) {
                 echo json_encode(['success' => true, 'id' => $result]);
             } else {
-                echo json_encode(['success'  => false, 'message' => 'Failed to insert product']);
+                echo json_encode(['success'  => false, 'message' => 'Failed to insert products of sale!']);
             }
         } else {
             echo json_encode(['success' => false, 'message' => 'Invalid input']);

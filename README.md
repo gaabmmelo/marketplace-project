@@ -4,6 +4,7 @@ Desenvolvimento de um sistema para mercado que permite cadastrar os produtos e t
 A tela de venda exibirá produtos, quantidades, valor total, e total de impostos e salvando cada venda realizada.
 
 # Funcionalidades
+
 1. Página inicial do projeto que exibe as opções disponíveis: cadastrar tipo, cadastrar produto e cadastrar venda;
 2. Lista dos tipos de produto cadastrado, produtos cadastrados e vendas realizadas;
 
@@ -15,21 +16,20 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
 # 💻 Pré-requisitos
 
-- PHP 8.*;
+- PHP 8.3.7;
 - php-mysqli;
 - Composer;
 - PostgresSQL;
+- bramus/router;
 
 # Instalando <marketplace-project>
 
- 1. Clone o repositório e entre na pasta;
- 2. Instale as dependência do projeto com o comando `composer install`;
- 3. Crie um banco de dados chamado "tal";
- 4. Execute o backup do banco de dados com o arquivo bd.backup encontrado na raiz do projeto;
- 5. Após as configurações do banco de dados, inicie o servidor do PHP com o comando `php -S localhost:8080` dentro da pasta de backend;
- 6. Para rodar o front-end, execute o comando `npm start` dentro da pasta frontend;
- 7. O projeto web estará disponível em `http://localhost:8000`;
+1.  Clone o repositório e entre na pasta;
+2.  Instale as dependência do projeto com o comando `composer install`;
+3.  Crie um banco de dados chamado "tal";
+4.  Execute o backup do banco de dados com o arquivo bd.backup encontrado na raiz do projeto;
+5.  Após as configurações do banco de dados, inicie o servidor do PHP com o comando `php -S localhost:8080` dentro da pasta de backend;
+6.  Para rodar o front-end, execute o comando `npm start` dentro da pasta frontend;
+7.  O projeto web estará disponível em `http://localhost:8000`;
 
 # Testes
-
-
