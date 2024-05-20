@@ -16,8 +16,9 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 # 💻 Pré-requisitos
 
 - PHP 8.*;
-- Composer
-- PostgresSQL
+- php-mysqli;
+- Composer;
+- PostgresSQL;
 
 # Instalando <marketplace-project>
 
