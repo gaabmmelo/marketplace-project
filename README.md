@@ -1,25 +1,25 @@
-># Projeto Marketplace
+# Projeto Marketplace
 
 Desenvolvimento de um sistema para mercado que permite cadastrar os produtos e tipos, definir o percentual de imposto, e realizar vendas com cálculo de valor e impostos por item.
 A tela de venda exibirá produtos, quantidades, valor total, e total de impostos e salvando cada venda realizada.
 
-## Funcionalidades
+# Funcionalidades
 1. Página inicial do projeto que exibe as opções disponíveis: cadastrar tipo, cadastrar produto e cadastrar venda;
 2. Lista dos tipos de produto cadastrado, produtos cadastrados e vendas realizadas;
 
->## Ajustes e melhorias
+# Ajustes e melhorias
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [ ] Tratamento dos erros no front-end;
 
->## 💻 Pré-requisitos
+# 💻 Pré-requisitos
 
 - PHP 8.*;
 - Composer
 - PostgresSQL
 
-## 🚀 Instalando <marketplace-project>
+# Instalando <marketplace-project>
 
  1. Clone o repositório e entre na pasta;
  2. Instale as dependência do projeto com o comando `composer install`;
@@ -29,6 +29,6 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
  6. Para rodar o front-end, execute o comando `npm start` dentro da pasta frontend;
  7. O projeto web estará disponível em `http://localhost:8000`;
 
-## 🚀 Testes
+# Testes
 
 
