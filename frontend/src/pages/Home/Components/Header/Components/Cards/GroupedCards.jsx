@@ -14,17 +14,17 @@ export function GroupedCards({ handleOpenModal }) {
   return (
     <Grid container gap={3} item justifyContent="end" md={10} xs={12}>
       <CardFunctionality
-        description="Adicione um novo produto!"
-        redirectPage={() => redirectPage("/add_produto")}
-        icon={<NoteAddIcon sx={{ fontSize: "100px" }} />}
-        title="Novo produto"
-      />
-
-      <CardFunctionality
         description="Adicione um novo tipo de produto!"
         redirectPage={() => handleOpenModal("addTypeProduct")}
         icon={<CategoryIcon sx={{ fontSize: "100px" }} />}
         title="Tipo de produto"
+      />
+
+      <CardFunctionality
+        description="Adicione um novo produto!"
+        redirectPage={() => redirectPage("/add_produto")}
+        icon={<NoteAddIcon sx={{ fontSize: "100px" }} />}
+        title="Novo produto"
       />
 
       <CardFunctionality

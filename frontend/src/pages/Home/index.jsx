@@ -18,14 +18,14 @@ export function Home() {
 
   const tabsItems = [
     {
-      ariaControls: "products",
+      ariaControls: "types",
       id: 0,
-      label: "Produtos",
+      label: "Tipos de produto",
     },
     {
-      ariaControls: "types",
+      ariaControls: "products",
       id: 1,
-      label: "Tipos de produto",
+      label: "Produtos",
     },
     {
       ariaControls: "sales",
@@ -37,9 +37,9 @@ export function Home() {
   const returnTab = (indexTab) => {
     switch (indexTab) {
       case 0:
-        return <ViewTableProduct />;
-      case 1:
         return <ViewTableProductType />;
+      case 1:
+        return <ViewTableProduct />;
       case 2:
         return <ViewTableProductSale />;
       default:
