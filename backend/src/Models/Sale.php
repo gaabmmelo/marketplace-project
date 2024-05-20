@@ -9,18 +9,16 @@ class Sale {
         $conn = new Database();
         $conn->connect();
 
-        $query = "SELECT * FROM sales_products";
+        $query = "SELECT * FROM sales";
 
         return $conn->fetchAll($query);
     }
 
-    public function create($product_id, $product_type_id, $product_quantity, $total_purchase) {
+    public function create($total_purchase, $total_tax) {
         $conn = new Database();
         $conn->connect();
 
-        $query = "INSERT INTO public.sales_products 
-        (product_id, product_type_id, product_quantity, total_purchase) 
-        VALUES ('$product_id', $product_type_id, $product_quantity, $total_purchase)";
+        $query = "INSERT INTO public.sales (total_purchase, total_tax) VALUES ($total_purchase, $total_tax)";
 
         error_log("Insert query: " . $query);
 

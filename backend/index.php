@@ -22,11 +22,19 @@ $router->delete('/product_type/{id}', 'ProductTypeController@delete');
 $router->options('/product_type', function() { /* ... */ });
 
 /*VENDAS*/
-$router->get('/sale', '\App\Controllers\SalesController@index');
-$router->get('/sale/{id}', '\App\Controllers\SalesController@show');
-$router->post('/sale', '\App\Controllers\SalesController@create');
-$router->put('/sale/{id}', 'SalesController@update');
-$router->delete('/sale/{id}', 'SalesController@delete');
-$router->options('/sale', function() { /* ... */ });
+$router->get('/sales', '\App\Controllers\SalesController@index');
+$router->get('/sales/{id}', '\App\Controllers\SalesController@show');
+$router->post('/sales', '\App\Controllers\SalesController@createSales');
+$router->put('/sales/{id}', 'SalesController@update');
+$router->delete('/sales/{id}', 'SalesController@delete');
+$router->options('/sales', function() { /* ... */ });
+
+/*PRODUTO VENDAS*/
+/*$router->get('/sales_product', '\App\Controllers\SalesController@index');
+$router->get('/sales_procut/{id}', '\App\Controllers\SalesController@show');*/
+$router->post('/sales_product', '\App\Controllers\SalesController@createSalesProduct');
+//$router->put('/sales_product/{id}', 'SalesController@update');
+//$router->delete('/sales_product/{id}', 'SalesController@delete');
+$router->options('/sales_product', function() { /* ... */ });
 
 $router->run();
