@@ -6,29 +6,9 @@ use App\Models\Product;
 use App\Models\ProductType;
 
 class ProductController {
-    /*public function index() {
-        $productModel = new Product();
-        echo json_encode($productModel->all());
-    }*/
-
     public function index() {
         $productModel = new Product();
         $products = $productModel->all();
-    
-        $productTypeModel = new ProductType();
-        $productTypes = $productTypeModel->all();
-    
-        $productTypeMap = [];
-        foreach ($productTypes as $productType) {
-            $productTypeMap[$productType['id']] = [
-                'product_type' => $productType['product_type'],
-                'tax_percentage' => $productType['tax_percentage']
-            ];
-        }
-    
-        foreach ($products as &$product) {
-            $product['product_type'] = $productTypeMap[$product['product_type_id']];
-        }
     
         echo json_encode($products);
     }
@@ -44,7 +24,7 @@ class ProductController {
         if (isset($data['product_name']) && isset($data['product_type_id']) && isset($data['product_value'])) {
             $product_name = $data['product_name'];
             $product_type_id = $data['product_type_id'];
-            $product_value = $data['product_value'];
+            $product_value = str_replace(',', '.', $data['product_value']);
 
             $productModel = new Product();
             $result = $productModel->create($product_name, $product_type_id, $product_value);

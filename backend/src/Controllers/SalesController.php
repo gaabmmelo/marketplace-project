@@ -18,14 +18,12 @@ class ProductController {
         $data = json_decode(file_get_contents('php://input'), true);
         error_log("Received data: " . json_encode($data));
 
-        if (isset($data['product_id']) 
-        && isset($data['product_type_id']) 
+        if (isset($data['product_id'])  
         && isset($data['product_quantity']) 
         && isset($data['total_purchase']) 
         && isset($data['total_tax_purchase'])) 
         {
             $product_id = $data['product_id'];
-            $product_type_id = $data['product_type_id'];
             $product_quantity = $data['product_quantity'];
             $total_purchase = $data['total_purchase'];
             $total_purchase_tax = $data['total_purchase_tax'];

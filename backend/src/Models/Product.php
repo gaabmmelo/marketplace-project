@@ -9,7 +9,17 @@ class Product {
         $conn = new Database();
         $conn->connect();
 
-        $query = "SELECT * FROM products";
+        $query = "SELECT
+            products.id,
+            products.product_name,
+            products.product_type_id,
+            products.product_value,
+            product_type.product_type,
+            product_type.tax_percentage
+        FROM products
+            INNER JOIN product_type
+            ON products.product_type_id = product_type.id
+        ";
 
         return $conn->fetchAll($query);
     }
