@@ -9,6 +9,7 @@ import { TableProductsSales } from "./TableProductsSales";
 import InputSelect from "components/Input/InputSelect";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
 import { ChipTotal } from "./Components/ChipTotal";
+import { useNavigate } from "react-router-dom";
 
 export function AddSale() {
   const { formatCurrency } = useFormatCurrency();
@@ -21,6 +22,9 @@ export function AddSale() {
 
   const [soldProducts, setSoldProducts] = useState([]);
   const [productSelected, setProductSelected] = useState("");
+
+  const navigate = useNavigate();
+  const redirectPage = (url) => navigate(url);
 
   const [sale, setSale] = useState({
     product_id: "",
@@ -129,9 +133,9 @@ export function AddSale() {
           },
         }
       );
-      console.log("Sale added successfully:", response.data);
 
       await handleAddSaleProducts(response.data.id);
+      redirectPage("/");
     } catch (error) {
       console.error("Error adding sale:", error);
     }
@@ -141,7 +145,6 @@ export function AddSale() {
     try {
       await Promise.all(
         soldProducts.map(async (product) => {
-          console.log(product);
           await axios.post(
             "http://localhost:8080/sales_product",
             {
@@ -159,7 +162,6 @@ export function AddSale() {
           );
         })
       );
-      console.log("All products added to sales_product successfully");
     } catch (error) {
       console.error("Error adding products to sales_product:", error);
     }

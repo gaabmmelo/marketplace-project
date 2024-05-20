@@ -76,12 +76,12 @@ export function Home() {
                   marginLeft: 4,
                   marginRight: 4,
                   marginBottom: 3,
-                  justifyContent: "center",
+                  justifyContent: "left",
+                  width: "30%",
                 }}
                 severity="info"
               >
-                Navegue entre as tabelas de produtos, tipos de produto e vendas
-                para realizar ações!
+                Navegue entre as tabelas de tipos de produto, de produtos!
               </Alert>
 
               <Paper
