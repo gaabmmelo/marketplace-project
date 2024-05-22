@@ -13,7 +13,6 @@ export const useFormatCurrency = () => {
     );
 
     const finalValue = `${formattedValue2}`;
-
     return finalValue;
   };
 

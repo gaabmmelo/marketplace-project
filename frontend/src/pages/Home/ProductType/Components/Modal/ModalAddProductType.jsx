@@ -102,9 +102,11 @@ export function ModalAddProductType({ handleClose, open }) {
                 },
               },
             }}
-            onChange={(evt) => handleChange("tax_percentage", evt.target.value)}
+            onChange={(evt) =>
+              handleChange("tax_percentage", formatCurrency(evt.target.value))
+            }
             type="text"
-            value={formatCurrency(productType.tax_percentage)}
+            value={productType.tax_percentage}
           />
         </Grid>
 

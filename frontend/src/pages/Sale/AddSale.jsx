@@ -29,7 +29,7 @@ export function AddSale() {
   const [sale, setSale] = useState({
     product_id: "",
     product_type_id: "",
-    product_quantity: "",
+    product_quantity: 0,
     total_purchase: "",
     total_tax: "",
   });
@@ -224,7 +224,7 @@ export function AddSale() {
                       placeholder={"Informe a quantidade desejada"}
                       type={"number"}
                       value={
-                        sale.product_quantity >= 0 ? sale.product_quantity : ""
+                        sale.product_quantity >= 0 ? sale.product_quantity : 0
                       }
                     />
                   </Grid>

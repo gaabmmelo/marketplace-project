@@ -110,14 +110,17 @@ export function AddProduct() {
                     <InputRender
                       id="product_value"
                       placeholder="Informe o valor do produto"
-                      value={formatCurrency(product.product_value)}
+                      value={product.product_value}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">R$</InputAdornment>
                         ),
                       }}
                       onChange={(evt) =>
-                        handleChange("product_value", evt.target.value)
+                        handleChange(
+                          "product_value",
+                          formatCurrency(evt.target.value)
+                        )
                       }
                     />
                   </Grid>
