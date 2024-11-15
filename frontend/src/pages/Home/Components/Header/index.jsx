@@ -53,7 +53,13 @@ export function Header() {
         handleClose={handleCloseModal}
         open={modalOpen === "addTypeProduct"}
       />
-      {showMessage && <AlertStyled text="teste" />}
+      {showMessage && (
+        <AlertStyled
+          text="teste"
+          snackbarVisibility={showMessage}
+          setSnackbarVisibility={setShowMessage}
+        />
+      )}
     </>
   );
 }

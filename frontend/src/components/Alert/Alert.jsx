@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import { Alert, LinearProgress } from "@mui/material";
 
-export default function AlertStyled() {
-  const [open, setOpen] = useState(true);
+export default function AlertStyled({
+  snackbarVisibility,
+  setSnackbarVisibility,
+}) {
   const [progress, setProgress] = useState(100);
-  const [snackbarVisibility, setSnackbarVisibility] = useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
 
-    setOpen(false);
+    setSnackbarVisibility(false);
   };
 
   const handleAction = () => {
@@ -35,13 +36,11 @@ export default function AlertStyled() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => setOpen(false), 800000);
     handleAction();
-    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <Snackbar open={open} onClose={handleClose}>
+    <Snackbar open={snackbarVisibility} onClose={handleClose}>
       <div>
         <Alert
           onClose={handleClose}
