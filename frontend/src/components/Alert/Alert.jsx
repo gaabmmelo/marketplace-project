@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import { Alert } from "@mui/material";
 
 export default function AlertStyled() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -13,8 +13,13 @@ export default function AlertStyled() {
     setOpen(false);
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => setOpen(false), 3000);
+    return () => clearTimeout(timer);
+  }, [open]);
+
   return (
-    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+    <Snackbar open={open} onClose={handleClose}>
       <Alert
         onClose={handleClose}
         severity="success"
