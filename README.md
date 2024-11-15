@@ -30,7 +30,7 @@ Com base no tempo do desafio, gostaria de ter desenvolvido estes ajustes e melho
 # Instalando <marketplace-project>
 
 1.  Clone o repositório e entre na pasta;
-2.  Instale as dependência do projeto com o comando `composer install`;
+2.  Instale as dependência do projeto com o comando `composer install` na pasta do back-end;
 3.  Crie um banco de dados chamado "project-sales-softexpert";
 4.  Execute o backup do banco de dados com o arquivo bd.backup encontrado na raiz do projeto;
 5.  Após as configurações do banco de dados, inicie o servidor do PHP com o comando `php -S localhost:8080` dentro da pasta de backend;
