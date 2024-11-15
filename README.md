@@ -31,11 +31,12 @@ Com base no tempo do desafio, gostaria de ter desenvolvido estes ajustes e melho
 
 1.  Clone o repositório e entre na pasta;
 2.  Instale as dependência do projeto com o comando `composer install` na pasta do back-end;
-3.  Crie um banco de dados chamado "project-sales-softexpert";
-4.  Execute o backup do banco de dados com o arquivo bd.backup encontrado na raiz do projeto;
-5.  Após as configurações do banco de dados, inicie o servidor do PHP com o comando `php -S localhost:8080` dentro da pasta de backend;
-6.  Para rodar o front-end, execute o comando `npm start` dentro da pasta frontend;
-7.  O projeto web estará disponível em `http://localhost:8000`;
+3.  Dentro da pasta do front-end instale as depedências com o comando `npm install`;
+4.  Crie um banco de dados chamado "project-sales-softexpert";
+5.  Execute o backup do banco de dados com o arquivo bd.backup encontrado na raiz do projeto;
+6.  Após as configurações do banco de dados, inicie o servidor do PHP com o comando `php -S localhost:8080` dentro da pasta de backend;
+7.  Para rodar o front-end, execute o comando `npm start` dentro da pasta frontend;
+8.  O projeto web estará disponível em `http://localhost:8000`;
 
 # Endpoints
 
