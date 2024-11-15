@@ -4,6 +4,7 @@ import { Description } from "./Components/Description";
 import React, { useState } from "react";
 import styles from "../../index.module.scss";
 import { ModalAddProductType } from "pages/Home/ProductType/Components/Modal/ModalAddProductType";
+import AlertStyled from "components/Alert/Alert";
 
 export function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -28,6 +29,8 @@ export function Header() {
     setModalOpen(null);
   };
 
+  const [showMessage, setShowMessage] = useState(false);
+
   return (
     <>
       <Box
@@ -46,9 +49,11 @@ export function Header() {
         </Grid>
       </Box>
       <ModalAddProductType
+        setShowMessage={setShowMessage}
         handleClose={handleCloseModal}
         open={modalOpen === "addTypeProduct"}
       />
+      {showMessage && <AlertStyled text="teste" />}
     </>
   );
 }

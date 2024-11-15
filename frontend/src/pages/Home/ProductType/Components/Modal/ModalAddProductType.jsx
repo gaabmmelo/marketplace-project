@@ -7,8 +7,9 @@ import axios from "axios";
 import { Label } from "components/Input/Label";
 import { InputRender } from "components/Input/InputRender";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
+import { AlertStyled } from "components/Alert/Alert";
 
-export function ModalAddProductType({ handleClose, open }) {
+export function ModalAddProductType({ handleClose, open, setShowMessage }) {
   const { formatCurrency } = useFormatCurrency();
   const [productType, setProductType] = useState({
     product_type: "",
@@ -46,6 +47,7 @@ export function ModalAddProductType({ handleClose, open }) {
             tax_percentage: "",
           });
           handleClose();
+          setShowMessage(true);
         })
         .catch((error) => {
           console.error("Error:", error);
