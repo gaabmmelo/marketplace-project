@@ -27,7 +27,7 @@ export default function AlertStyled({
       clearInterval(interval);
       setSnackbarVisibility(false);
       setProgress(0);
-    }, 4000);
+    }, 3600);
 
     return () => {
       clearTimeout(duration);
