@@ -16,6 +16,7 @@ import InputSelect from "components/Input/InputSelect";
 import { Label } from "components/Input/Label";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
 import { useNavigate } from "react-router-dom";
+import AlertStyled from "components/Alert/Alert";
 
 export function AddProduct() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export function AddProduct() {
 
   const [productTypeId, setProductTypeId] = useState("");
   const [productTypes, setProductTypes] = useState([]);
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleChange = (attribute, value) => {
     setProduct({
@@ -58,6 +60,7 @@ export function AddProduct() {
           product_value: "",
         });
         setProductTypeId("");
+        setShowMessage(true);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -171,6 +174,14 @@ export function AddProduct() {
           </Grid>
         </Grid>
       </Box>
+
+      {showMessage && (
+        <AlertStyled
+          text="Produto adicionado com sucesso!"
+          snackbarVisibility={showMessage}
+          setSnackbarVisibility={setShowMessage}
+        />
+      )}
     </>
   );
 }

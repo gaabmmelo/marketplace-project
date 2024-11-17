@@ -55,7 +55,7 @@ export function Header() {
       />
       {showMessage && (
         <AlertStyled
-          text="teste"
+          text="Tipo de produto adicionado com sucesso!"
           snackbarVisibility={showMessage}
           setSnackbarVisibility={setShowMessage}
         />
