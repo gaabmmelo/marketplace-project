@@ -196,7 +196,7 @@ export function AddSale() {
                 </Typography>
 
                 <Grid container spacing={2} alignItems={"flex-end"}>
-                  <Grid item xs={8}>
+                  <Grid item xs={12}>
                     <Label label="Produto" />
                     <InputSelect
                       onChange={(e) => handleProductSelect(e.target.value)}
@@ -212,42 +212,44 @@ export function AddSale() {
                       ))}
                     </InputSelect>
                   </Grid>
-                  <Grid item xs={4}>
-                    <Label label="Quantidade do produto desejada" />
-
-                    <InputRender
-                      id="product_quantity"
-                      inputProps={{ "aria-label": "simple-tabpanel" }}
-                      onChange={(evt) =>
-                        handleChange("product_quantity", evt.target.value)
-                      }
-                      placeholder={"Informe a quantidade desejada"}
-                      type={"number"}
-                      value={
-                        sale.product_quantity >= 0 ? sale.product_quantity : 0
-                      }
-                    />
-                  </Grid>
                 </Grid>
 
                 <Grid container spacing={2} alignItems={"flex-end"}>
                   {productSelected ? (
                     <>
-                      <Grid item xs={4}>
+                      <Grid item xs={3}>
+                        <Label label="Quantidade do produto desejada" />
+
+                        <InputRender
+                          id="product_quantity"
+                          inputProps={{ "aria-label": "simple-tabpanel" }}
+                          onChange={(evt) =>
+                            handleChange("product_quantity", evt.target.value)
+                          }
+                          placeholder={"Informe a quantidade desejada"}
+                          type={"number"}
+                          value={
+                            sale.product_quantity >= 0
+                              ? sale.product_quantity
+                              : 0
+                          }
+                        />
+                      </Grid>
+                      <Grid item xs={3}>
                         <Label label="Valor do produto" />
                         <InputRender
                           disabled
                           value={`R$ ${formatCurrency(productValue)}`}
                         />
                       </Grid>
-                      <Grid item xs={4}>
+                      <Grid item xs={3}>
                         <Label label="Tipo do produto" />
                         <InputRender
                           disabled
                           value={`#TP ${productTypeId} - ${productType}`}
                         />
                       </Grid>
-                      <Grid item xs={4}>
+                      <Grid item xs={3}>
                         <Label label="Valor do imposto" />
                         <InputRender
                           disabled
