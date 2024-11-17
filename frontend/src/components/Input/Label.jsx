@@ -1,17 +1,32 @@
 import React from "react";
-import { InputLabel } from "@mui/material";
+import { createTheme, InputLabel, ThemeProvider } from "@mui/material";
 
-export function Label({ params, htmlFor, label }) {
+const theme = createTheme({
+  components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        asterisk: {
+          color: "red",
+        },
+      },
+    },
+  },
+});
+
+export function Label({ htmlFor, label }) {
   return (
-    <InputLabel
-      htmlFor={htmlFor}
-      sx={{
-        color: "#003641",
-        fontWeight: "bolder",
-        textAlign: "left",
-      }}
-    >
-      {label}
-    </InputLabel>
+    <ThemeProvider theme={theme}>
+      <InputLabel
+        htmlFor={htmlFor}
+        required
+        sx={{
+          color: "#003641",
+          fontWeight: "bolder",
+          textAlign: "left",
+        }}
+      >
+        {label}
+      </InputLabel>
+    </ThemeProvider>
   );
 }

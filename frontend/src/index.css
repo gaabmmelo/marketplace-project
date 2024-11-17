@@ -18,3 +18,8 @@ code {
 .MuiTableCell-root{
   font-size: 1rem!important;
 }
+
+.Mui-error {
+  font-size: 12px;
+  margin-left: 0px !important;
+}

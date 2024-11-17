@@ -4,7 +4,6 @@ import {
   Box,
   Grid,
   InputAdornment,
-  InputLabel,
   MenuItem,
   Paper,
   Typography,
@@ -95,58 +94,67 @@ export function AddProduct() {
                   Cadastro de produtos
                 </Typography>
 
-                <Grid container spacing={2} alignItems={"flex-end"}>
-                  <Grid item xs={6}>
-                    <Label label="Nome do produto" />
-                    <InputRender
-                      id="product_name"
-                      placeholder="Informe o nome do produto"
-                      value={product.product_name}
-                      onChange={(evt) =>
-                        handleChange("product_name", evt.target.value)
-                      }
-                    />
-                  </Grid>
+                <form>
+                  <Grid
+                    container
+                    spacing={2}
+                    alignItems={"flex-start"}
+                    columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                  >
+                    <Grid item xs={6}>
+                      <Label label="Nome do produto" />
+                      <InputRender
+                        required
+                        id="product_name"
+                        placeholder="Informe o nome do produto"
+                        value={product.product_name}
+                        onChange={(evt) =>
+                          handleChange("product_name", evt.target.value)
+                        }
+                      />
+                    </Grid>
 
-                  <Grid item xs={6}>
-                    <Label label="Valor do produto" />
-                    <InputRender
-                      id="product_value"
-                      placeholder="Informe o valor do produto"
-                      value={product.product_value}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">R$</InputAdornment>
-                        ),
-                      }}
-                      onChange={(evt) =>
-                        handleChange(
-                          "product_value",
-                          formatCurrency(evt.target.value)
-                        )
-                      }
-                    />
-                  </Grid>
+                    <Grid item xs={6}>
+                      <Label label="Valor do produto" />
+                      <InputRender
+                        required
+                        id="product_value"
+                        placeholder="Informe o valor do produto"
+                        value={product.product_value}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">R$</InputAdornment>
+                          ),
+                        }}
+                        onChange={(evt) =>
+                          handleChange(
+                            "product_value",
+                            formatCurrency(evt.target.value)
+                          )
+                        }
+                      />
+                    </Grid>
 
-                  <Grid item xs={12}>
-                    <Label label="Tipo do produto" />
-                    <InputSelect
-                      onChange={(e) => setProductTypeId(e.target.value)}
-                      value={productTypeId}
-                      sx={{ textAlign: "left" }}
-                      label={"Selecione o tipo do produto"}
-                    >
-                      {productTypes.map((option) => (
-                        <MenuItem key={option.id} value={option.id}>
-                          {" "}
-                          Identificador: #00{option.id} | Tipo do produto:{" "}
-                          {option.product_type} - Valor do imposto:{" "}
-                          {formatCurrency(option.tax_percentage)}
-                        </MenuItem>
-                      ))}
-                    </InputSelect>
+                    <Grid item xs={12}>
+                      <Label label="Tipo do produto" />
+                      <InputSelect
+                        onChange={(e) => setProductTypeId(e.target.value)}
+                        value={productTypeId}
+                        sx={{ textAlign: "left" }}
+                        label={"Selecione o tipo do produto*"}
+                      >
+                        {productTypes.map((option) => (
+                          <MenuItem key={option.id} value={option.id}>
+                            {" "}
+                            Identificador: #00{option.id} | Tipo do produto:{" "}
+                            {option.product_type} - Valor do imposto:{" "}
+                            {formatCurrency(option.tax_percentage)}
+                          </MenuItem>
+                        ))}
+                      </InputSelect>
+                    </Grid>
                   </Grid>
-                </Grid>
+                </form>
 
                 <Grid
                   container

@@ -81,7 +81,7 @@ export function Home() {
                 }}
                 severity="info"
               >
-                Navegue entre as tabelas de tipos de produto, de produtos!
+                Navegue entre as tabelas de tipos de produto, produtos e vendas!
               </Alert>
 
               <Paper

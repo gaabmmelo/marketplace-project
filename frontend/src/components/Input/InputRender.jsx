@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from "@mui/material";
 
 export function InputRender({
@@ -10,7 +10,21 @@ export function InputRender({
   type,
   disabled,
   id,
+  required,
 }) {
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState("");
+
+  const handleBlur = () => {
+    if (required && !value) {
+      setError(true);
+      setHelperText("Campo de preenchimento obrigatório.");
+    } else {
+      setError(false);
+      setHelperText("");
+    }
+  };
+
   return (
     <TextField
       id={id}
@@ -20,11 +34,18 @@ export function InputRender({
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      onBlur={handleBlur}
+      error={error}
+      helperText={helperText}
       sx={{
         svg: { color: (theme) => theme.palette.secondary.main },
         marginTop: "10px",
-        marginBottom: "20px",
+        marginLeft: "0px!important",
+        marginBottom: "15px",
         width: "100%",
+        "& .MuiFormHelperText-root": {
+          minHeight: "20px",
+        },
       }}
       {...params}
     />
