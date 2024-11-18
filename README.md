@@ -1,6 +1,6 @@
 # Projeto Marketplace
 
-Desenvolvimento de um sistema para mercado que permite cadastrar os produtos e tipos, definir o percentual de imposto, e realizar vendas com cálculo de valor e impostos por item.
+Desenvolvimento de um sistema para um marketplace que permite cadastrar os produtos e tipos, definir o percentual de imposto, e realizar vendas com cálculo de valor e impostos por item.
 A tela de venda exibirá produtos, quantidades, valor total, e total de impostos e salvando cada venda realizada.
 
 # Funcionalidades
