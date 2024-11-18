@@ -3,6 +3,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import React from "react";
 import Icon from "components/Icon";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export function ProductLine({ item, handleEdit }) {
   const { formatCurrency } = useFormatCurrency();
@@ -25,6 +26,14 @@ export function ProductLine({ item, handleEdit }) {
           //callback={() => handleEdit(item)}
           icon={<EditOutlinedIcon />}
           tooltip="Editar"
+        />
+      </TableCell>
+
+      <TableCell>
+        <Icon
+          //callback={() => handleEdit(item)}
+          icon={<DeleteIcon />}
+          tooltip="Excluir"
         />
       </TableCell>
     </TableRow>
