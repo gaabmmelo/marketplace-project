@@ -264,7 +264,7 @@ export function AddSale() {
                   container
                   display={"flex"}
                   justifyContent={"flex-end"}
-                  mt={2}
+                  mt={1}
                 >
                   <ButtonStyled
                     handler={handleAddProduct}
@@ -279,12 +279,12 @@ export function AddSale() {
 
                 <Grid
                   container
-                  mb={8}
+                  mb={10}
                   mt={5}
                   alignItems={"center"}
                   justifyContent={"center"}
                 >
-                  <Paper sx={{ border: "1px solid #d9d8d8", padding: 4 }}>
+                  <Paper sx={{ border: "1px solid #d9d8d8", padding: 8 }}>
                     <ChipTotal soldProducts={soldProducts} />
 
                     <TableProductsSales
