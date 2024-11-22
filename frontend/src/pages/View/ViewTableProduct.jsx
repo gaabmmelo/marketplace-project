@@ -37,6 +37,30 @@ export function ViewTableProduct() {
 
   const table = useTable(products ?? [], headCells, products.length ?? 0);
 
+  const handleRemove = async (productId) => {
+    await axios
+      .delete(
+        `http://localhost:8080/product/${productId}`,
+        {
+          id: productId,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        const updatedProducts = products.filter(
+          (product) => product.id !== productId
+        );
+        setProducts(updatedProducts);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -58,7 +82,7 @@ export function ViewTableProduct() {
     <TblPrimary hasPagination table={table}>
       {table?.recordsAfterPagingAndSorting()?.map((product) => (
         <ProductLine
-          //handleEdit={() => handleEdit(product)}
+          handleRemove={() => handleRemove(product.id)}
           item={product}
           key={product.id}
         />

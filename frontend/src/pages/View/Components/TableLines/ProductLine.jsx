@@ -5,7 +5,7 @@ import Icon from "components/Icon";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export function ProductLine({ item, handleEdit }) {
+export function ProductLine({ item, handleEdit, handleRemove }) {
   const { formatCurrency } = useFormatCurrency();
   return (
     <TableRow>
@@ -23,7 +23,7 @@ export function ProductLine({ item, handleEdit }) {
 
       <TableCell>
         <Icon
-          //callback={() => handleEdit(item)}
+          callback={() => handleEdit(item)}
           icon={<EditOutlinedIcon />}
           tooltip="Editar"
         />
@@ -31,7 +31,7 @@ export function ProductLine({ item, handleEdit }) {
 
       <TableCell>
         <Icon
-          //callback={() => handleEdit(item)}
+          callback={() => handleRemove(item)}
           icon={<DeleteIcon />}
           tooltip="Excluir"
         />
