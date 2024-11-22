@@ -33,4 +33,14 @@ class Product {
 
         return $conn->insert($query);
     }
+
+    public function delete($id) {
+        $conn = new Database();
+        $conn->connect();
+
+        $query = "DELETE FROM public.products WHERE id = $id";
+        error_log("Delete query: " . $query);
+
+        return $conn->delete($query, ['id' => $id]);
+    }
 }

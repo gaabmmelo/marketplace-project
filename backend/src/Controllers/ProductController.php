@@ -38,4 +38,15 @@ class ProductController {
             echo json_encode(['success' => false, 'message' => 'Invalid input']);
         }
     }
+
+    public function delete($id) {
+        $product = new Product();
+        $result = $product->delete($id);
+
+        if ($result) {
+            echo json_encode(['status' => 'success', 'message' => 'Product deleted successfully.']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Failed to delete product.']);
+        }
+    }
 }
