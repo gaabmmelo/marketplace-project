@@ -38,8 +38,15 @@ class Database {
         }
     }
 
-    public function update($query, $params) {
-        $result = $this->link->exec($query);
+    public function update($query, $params = []) {
+        $result = $this->link->prepare($query);
+
+        foreach($params as $key => $value) {
+            $result->bindValue(":" . $key, $value);
+        }
+
+        $result->execute();
+
         if ($result) {
             return $result;
         } else {
