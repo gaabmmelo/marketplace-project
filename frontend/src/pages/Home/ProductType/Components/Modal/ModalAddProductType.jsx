@@ -9,12 +9,32 @@ import { InputRender } from "components/Input/InputRender";
 import { useFormatCurrency } from "hooks/useFormatCurrency";
 import { AlertStyled } from "components/Alert/Alert";
 
-export function ModalAddProductType({ handleClose, open, setShowMessage }) {
+export function ModalAddProductType({
+  handleClose,
+  open,
+  setShowMessage,
+  product,
+}) {
   const { formatCurrency } = useFormatCurrency();
+
   const [productType, setProductType] = useState({
     product_type: "",
     tax_percentage: "",
   });
+
+  React.useEffect(() => {
+    if (product) {
+      setProductType({
+        product_type: product.product_type || "",
+        tax_percentage: product.tax_percentage || "",
+      });
+    } else {
+      setProductType({
+        product_type: "",
+        tax_percentage: "",
+      });
+    }
+  }, [product]);
 
   const handleChange = (attribute, value) => {
     setProductType({
@@ -23,44 +43,49 @@ export function ModalAddProductType({ handleClose, open, setShowMessage }) {
     });
   };
 
-  const handleAdd = async () => {
+  const handleSave = async () => {
     try {
       const valueWithoutPoints = productType.tax_percentage.replace(/\./g, "");
       const formattedValue = valueWithoutPoints.replace(",", ".");
 
-      axios
-        .post(
-          "http://localhost:8080/products_type",
-          {
-            ...productType,
-            tax_percentage: formattedValue,
+      const url = product
+        ? `http://localhost:8080/products_type/${product.id}`
+        : "http://localhost:8080/products_type";
+
+      const method = product ? "put" : "post";
+
+      console.log(productType);
+
+      await axios[method](
+        url,
+        {
+          ...productType,
+          tax_percentage: formattedValue,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((response) => {
-          setProductType({
-            product_type: "",
-            tax_percentage: "",
-          });
-          handleClose();
-          setShowMessage(true);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        }
+      );
+
+      setProductType({
+        product_type: "",
+        tax_percentage: "",
+      });
+      handleClose();
+      //setShowMessage(true);
     } catch (error) {
-      console.log("Error:", error);
+      console.error("Error:", error);
     }
   };
 
   return (
     <Modal onClose={handleClose} open={open}>
       <Grid className="modal" container padding={3}>
-        <ModalTitle title="Novo tipo de produto" />
+        <ModalTitle
+          title={product ? "Editar tipo de produto" : "Novo tipo de produto"}
+        />
 
         <Grid item xs={12} mt={2}>
           <Label htmlFor="product_type" label="Nome do tipo" />
@@ -123,9 +148,9 @@ export function ModalAddProductType({ handleClose, open, setShowMessage }) {
 
           <ButtonStyled
             color="primary"
-            handler={handleAdd}
+            handler={handleSave}
             size="large"
-            title="Adicionar"
+            title={product ? "Salvar" : "Adicionar"}
             variant="contained"
           />
         </Grid>
