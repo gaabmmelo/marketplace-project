@@ -18,7 +18,7 @@ export function ProductType({ item, handleEdit }) {
 
       <TableCell>
         <Icon
-          //callback={() => handleEdit(item)}
+          callback={() => handleEdit(item)}
           icon={<EditOutlinedIcon />}
           tooltip="Editar"
         />
