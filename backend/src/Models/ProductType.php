@@ -24,14 +24,13 @@ class ProductType {
         return $conn->insert($query);
     }
 
-    public function update($id, $name, $type_id) {
+    public function update($id, $product_type, $tax_percentage) {
         $conn = new Database();
         $conn->connect();
 
-        $query = "UPDATE public.product_type SET product_type = :name, tax_percentage = :type_id WHERE id = :id";
-        error_log("Update query: " . $query);
+        $query = "UPDATE public.product_type SET product_type = :product_type, tax_percentage = :tax_percentage WHERE id = :id";
 
-        return $conn->update($query, ['id' => $id, 'name' => $name, 'type_id' => $type_id]);
+        return $conn->update($query, ['id' => $id, 'product_type' => $product_type, 'tax_percentage' => $tax_percentage]);
     }
 
     public function delete($id) {
