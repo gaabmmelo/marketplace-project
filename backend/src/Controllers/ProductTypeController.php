@@ -38,11 +38,11 @@ class ProductTypeController {
     public function update($id) {
         $data = json_decode(file_get_contents("php://input"), true);
 
-        $name = $data['name'];
-        $type_id = $data['type_id'];
+        $product_type = $data['product_type'];
+        $tax_percentage = $data['tax_percentage'];
 
         $productType = new ProductType();
-        $result = $productType->update($id, $name, $type_id);
+        $result = $productType->update($id, $product_type, $tax_percentage);
 
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Product type updated successfully.']);
